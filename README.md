@@ -1,14 +1,17 @@
 # postfoliosv2
 
-## Setup
+## stack
+- NuxtJS & Vue
 
-### install deps
+## setup
+
+**install deps**
 
 ```bash
 pnpm install
 ```
 
-## start dev server
+**start dev server**
 
 ```bash
 
@@ -17,7 +20,7 @@ pnpm run dev
 
 ```
 
-## build prod app
+**build prod app**
 
 ```bash
 
@@ -26,7 +29,7 @@ pnpm run build
 
 ```
 
-## preview prod app
+**preview prod app**
 
 ```bash
 
