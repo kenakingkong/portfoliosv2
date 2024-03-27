@@ -1,4 +1,4 @@
-<style lang="css" scoped>
+<style scoped lang="css">
 body {
   overflow: hidden;
 }

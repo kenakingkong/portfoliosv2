@@ -17,7 +17,17 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   components: true,
   devtools: { enabled: true },
-
+  routeRules: {
+    '/': { prerender: true },
+    //'/api/*': { cache: { maxAge: 60 * 60 } },
+  },
+  runtimeConfig: {
+    FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
+  },
+  
+  nitro: {
+    plugins: ["~/server/plugins/database.ts"],
+  },
   googleFonts: {
     families: {
       "Open+Sans": true,

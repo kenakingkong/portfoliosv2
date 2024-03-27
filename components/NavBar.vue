@@ -15,7 +15,7 @@ const props = defineProps<{ links?: INavLink[] }>()
 const navLinks = computed(() => props.links || defaultNavLinks)
 </script>
 
-<style lang="css" scoped>
+<style scoped lang="css">
 nav {
   padding: var(--space-1);
   display: flex;

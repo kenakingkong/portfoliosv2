@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="css">
 h1 {
   display: none;
 }

@@ -1,3 +1,10 @@
+<script setup lang="ts">
+const { data, error } = await useFetch('/api/hello')
+console.log(data)
+</script>
+
+<style scoped lang="css">
+</style>
 
 <template>
   <main>
