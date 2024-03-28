@@ -10,13 +10,13 @@
   --font-space: "Space Grotesk", serif;
 
   /* font size */
-  --xxs: 0.5em;
-  --xs: 0.8em;
-  --sm: 1.125em;
-  --md: 1.5em;
-  --lg: 2em;
-  --xl: 3.5em;
-  --xxl: 7em;
+  --text-xxs: 0.5em;
+  --text-xs: 0.8em;
+  --text-sm: 1.125em;
+  --text-md: 1.5em;
+  --text-lg: 2em;
+  --text-xl: 3.5em;
+  --text-xxl: 7em;
 
   /* spacing */
   --space-1: 1rem;
@@ -40,6 +40,10 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

@@ -22,6 +22,9 @@ nav {
   gap: var(--space-2);
   justify-content: space-between;
   font-family: var(--font-sans);
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 
 nav ul {

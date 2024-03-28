@@ -66,7 +66,7 @@ div {
 
 p {
   margin: var(--space-y-2);
-  font-size: var(--xxl);
+  font-size: var(--text-xxl);
   font-weight: 600;
   font-family: var(--font-sans);
   line-height: 50%;

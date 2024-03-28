@@ -1,22 +1,17 @@
-import { DataSnapshot, child, get } from "firebase/database";
+import { child, get } from "firebase/database";
 import { dbRef } from "../db";
 
-export default defineEventHandler((event) => {
-  get(child(dbRef, `designItems`))
+export default defineEventHandler(async () => {
+  return await get(child(dbRef, "designItems"))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        return snapshot.val()
+        return snapshot.val();
       } else {
-        return []
-      }
-    })
-    .then((res: DataSnapshot) => {
-      console.log(res)
-      return {
-        data: res
+        return [];
       }
     })
     .catch((error) => {
       console.error(error);
+      return [];
     });
 });

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  const { data } = await useFetch('/api/design')
-  console.log(data)
+  const { data, error } = await useFetch('/api/design')
 </script>
 
 <style scoped lang="css">
