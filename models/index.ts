@@ -1,3 +1,7 @@
+export * from "./DesignFile";
+export * from "./DesignSet";
+export * from "./DesignZipfile";
+
 export * from "./DevArticle";
 export * from "./DevEducation";
 export * from "./DevExperience";

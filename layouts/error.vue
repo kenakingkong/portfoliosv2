@@ -1,7 +1,7 @@
-<script setup lang="ts">
-const props = defineProps({
-  error: Object as () => NuxtError
-})
+<script lang="ts">
+export default {
+  props: ['error']
+}
 </script>
 
 
