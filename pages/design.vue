@@ -19,7 +19,7 @@ export default {
 <style scoped lang="css">
 main {
   width: 100%;
-  font-family: var(--font-sans);
+  font-family: var(--font-space);
 }
 
 .hero-section {

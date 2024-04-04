@@ -17,21 +17,28 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   components: true,
   devtools: { enabled: true },
+  modules: [
+    [
+      "@nuxtjs/google-fonts",
+      {
+        families: {
+          "Open+Sans": true,
+          "Space+Grotesk": true,
+        },
+      },
+    ],
+  ],
+  nitro: {
+    plugins: ["~/server/plugins/database.ts"],
+  },
   routeRules: {
-    '/': { prerender: true },
+    "/": { prerender: true },
     //'/api/*': { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
-  },
-  
-  nitro: {
-    plugins: ["~/server/plugins/database.ts"],
-  },
-  googleFonts: {
-    families: {
-      "Open+Sans": true,
-      "Space+Grotesk": true,
+    public: {
+      FIREBASE_STORAGE_TOKEN: process.env.FIREBASE_STORAGE_TOKEN,
     },
   },
 });

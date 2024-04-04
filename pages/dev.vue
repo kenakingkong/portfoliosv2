@@ -84,8 +84,7 @@ main {
   height: 100%;
   max-height: 100%;
   width: 100%;
-  overflow: hidden;
-  font-family: var(--font-sans);
+  font-family: var(--font-space);
 }
 
 .container {
@@ -101,7 +100,6 @@ main {
   gap: var(--space-2);
   overflow-y: scroll;
 }
-
 </style>
 
 <template>

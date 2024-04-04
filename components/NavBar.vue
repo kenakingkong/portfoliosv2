@@ -21,20 +21,25 @@ nav {
   display: flex;
   gap: var(--space-2);
   justify-content: space-between;
-  font-family: var(--font-sans);
-  position: -webkit-sticky; /* Safari */
+
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 nav ul {
+  width: 100%;
+  margin: 0;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: var(--space-1);
-  width: 100%;
-  font-weight: 600;
-  margin: 0;
+
+  font-family: var(--font-sans);
+  font-weight: bold;
+
   list-style-type: none;
 }
 

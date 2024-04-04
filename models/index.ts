@@ -1,3 +1,5 @@
+export * from "./ArtItem";
+
 export * from "./DesignFile";
 export * from "./DesignSet";
 export * from "./DesignZipfile";
