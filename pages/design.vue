@@ -1,5 +1,6 @@
 <script lang="ts">
 import { IDesignSet } from "@/models"
+
 export default {
   setup() {
     const sets = ref()
@@ -21,16 +22,28 @@ main {
   font-family: var(--font-sans);
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-y-4)
+.hero-section {
+  width: 100vw;
+  height: 100vh;
 }
 
-section {
-  width: 100%;
-  max-width: 40rem;
-  margin: auto;
+.file-section {
+  width: 100vw;
+  height: 75vh;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 2px 0 0 0;
+}
+
+.footer-section {
+  padding: var(--space-2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: var(--text-lg);
 }
 </style>
 
@@ -38,12 +51,21 @@ section {
   <main>
     <NavBar />
     <div class="container">
-      <div>
-        <h1>Design header</h1>
+      <div class="hero-section">
+        <DesignAnimation />
       </div>
-      <section v-for="set in sets" :key="set.title">
+      <div class="file-section" v-for="set in sets" :key="set.title">
         <DesignSection :set="set" />
-      </section>
+      </div>
+      <div class="file-section footer-section">
+        <p>
+          everything is done in figma and gimp
+          <br><br>
+          one day i'll pay for photoshop & illustrator!
+          <br><br>
+          mak
+        </p>
+      </div>
     </div>
   </main>
 </template>

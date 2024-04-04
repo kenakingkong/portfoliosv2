@@ -22,41 +22,78 @@ export default {
 
 <style scoped lang="css">
 ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-img {
+  height: 100%;
   width: 100%;
-  max-width: 400px;
+  margin: 0;
+  padding: var(--space-1);
+  padding-left: var(--space-2);
+  overflow-x: scroll;
+
+  display: flex;
+  justify-content: start;
+  gap: var(--space-4);
+
+  list-style-type: none;
 }
 
-.card {
+li {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
   gap: var(--space-1);
 }
 
-.content {
+h2 {
+  font-size: var(--text-xl);
+  font-weight: bold;
+  min-width: 200px;
+}
+
+a {}
+
+figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+img {
+  height: auto;
+  width: auto;
+  max-width: 500px;
+  max-height: 55vh;
+  object-fit: contain;
+}
+
+p {
   width: 100%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
 }
-
 </style>
 
 <template>
-  <div class="card">
-    <img :src="set.files[activeFileIndex].url" class="" />
-    <div class="content">
-      <h2>{{ set.title }}</h2>
-      <a :href="set.zipfile.url" @click="$emit('onDownload', $event, set.zipfile.access_code)">
+  <ul class="card">
+    <li>
+      <h2 class="card-title">{{ set.title }}</h2>
+      <a :href="set.zipfile.url" @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
         Download Files
       </a>
-      <ul>
-        <li v-for="file in set.files" :key="file.name">{{ file.name }}</li>
-      </ul>
-    </div>
-  </div>
+    </li>
+    <li v-for="file in set.files" :key="file.name">
+      <figure>
+        <img :src="file.url" loading="lazy" />
+        <figcaption>{{ file.name }}</figcaption>
+      </figure>
+    </li>
+  </ul>
 </template>
