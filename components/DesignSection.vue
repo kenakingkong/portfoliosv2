@@ -25,8 +25,7 @@ ul {
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: var(--space-1);
-  padding-left: var(--space-2);
+  padding: var(--space-1) var(--space-2);
   overflow-x: scroll;
 
   display: flex;

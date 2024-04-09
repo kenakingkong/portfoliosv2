@@ -27,19 +27,15 @@ export default {
 
 <style scoped lang="css">
 ul {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-
   margin: 0;
   padding: var(--space-1);
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 
   display: flex;
   gap: var(--space-1);
   flex-wrap: wrap;
 
-  white-space: no-wrap;
+  white-space: nowrap;
 
   list-style-type: none;
 }

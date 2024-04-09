@@ -18,17 +18,20 @@ export default {
 </script>
 
 <style scoped lang="css">
-aside {
-  position: fixed;
-  top: 20%;
-  padding: var(--space-1);
-  width: 12rem;
+@media only screen and (max-width: 880px) {
+  aside {
+    display: none;
+  }
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+@media only screen and (min-width: 880px) {
+  aside {
+    position: fixed;
+    top: 20%;
+    bottom: 0;
+    padding: var(--space-1);
+    width: 12rem;
+  }
 }
 
 ul {

@@ -7,6 +7,14 @@ export interface IArtState {
   items: IArtItem[]
 }
 
+const generateRandomId = () => {
+  return (Math.random() + 1).toString(36).substring(7);
+}
+
+const assignRandomId = (item: IArtItem) => {
+  return { ...item, id: generateRandomId() }
+}
+
 export default {
   setup() {
     const state = reactive<IArtState>({
@@ -25,7 +33,7 @@ export default {
 
     async function fetchData() {
       const data = await $fetch<IArtItem[]>('/api/art')
-      state["items"] = data
+      state["items"] = data.map(assignRandomId)
       state["collections"] = ["all", ...Array.from(new Set(data.map((item: IArtItem) => item.collection)))]
     }
 
@@ -42,13 +50,16 @@ main {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
 </style>
 
 <template>
   <main>
     <NavBar />
+    <ArtGallery />
     <ArtNavBar />
-    <ArtDisplay />
   </main>
 </template>

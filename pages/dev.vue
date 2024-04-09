@@ -62,6 +62,7 @@ export default {
 
     async function fetchAndSetValues() {
       const data = await $fetch<IDevState>('/api/dev')
+      update("devSocials", (data as any).devSocials.sort(sortDesc))
       sections.value.forEach((section) => {
         const property = section.stateProperty
         update(property, (data as any)[property].sort(sortDesc))
@@ -85,6 +86,7 @@ main {
   max-height: 100%;
   width: 100%;
   font-family: var(--font-space);
+  background-color: lavenderblush;
 }
 
 .container {
@@ -109,10 +111,7 @@ main {
       <DevSidebar />
       <div class="content">
         <DevHeader />
-        <template v-for="section in sections">
-          <DevSection :id="section.id" :header="section.header" :state-property="section.stateProperty"
-            v-bind="section.categoryDisplay && { categoryDisplay: section.categoryDisplay }" />
-        </template>
+        <DevSections />
       </div>
     </div>
   </main>

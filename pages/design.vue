@@ -20,6 +20,7 @@ export default {
 main {
   width: 100%;
   font-family: var(--font-space);
+  background-color: chartreuse;
 }
 
 .hero-section {

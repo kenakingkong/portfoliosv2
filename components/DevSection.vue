@@ -11,6 +11,7 @@ export default {
   },
   computed: {
     items() {
+      console.log(this.state)
       return (this.state as any)[this.stateProperty as keyof typeof this.state]
     },
     showTopCategories() {
@@ -59,6 +60,10 @@ li {
 span {
   display: block;
 }
+
+.inline-category {
+  font-size: var(--text-xs);
+}
 </style>
 
 <template>
@@ -66,7 +71,7 @@ span {
     <h2>{{ header }}</h2>
     <ul v-if="showInlineCategories">
       <li v-for="(value, key) in categoryItems" :key="key">
-        <span class="inline-category">{{ key }}</span>
+        <span class="inline-category">{{ key }}:</span>
         <ul class="ul-tight">
           <li v-for="item in value" :key="item.title">
             <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }}</a>

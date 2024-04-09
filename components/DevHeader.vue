@@ -5,9 +5,9 @@ export default {
   },
   computed: {
     items() {
-      return (this.state as any)["devSocials"]
-    },
-  },
+      return (this.state as any).devSocials
+    }
+  }
 }
 </script>
 
@@ -27,13 +27,17 @@ ul {
   list-style-type: none;
   padding: 0
 }
+
+li {
+  font-size: var(--text-xs);
+}
 </style>
 
 <template>
-  <section>
+  <section id="about">
     <h1>makena kong</h1>
   </section>
-  <section id="about">
+  <section>
     <h2>about me</h2>
     <p>
       I’m a full-stack engineer that leans towards the front end and a good eye for UI/UX
@@ -41,8 +45,8 @@ ul {
       I’m a quick prototyper and iterate fast.
     </p>
     <ul>
-      <li v-for="item in items" :key="item.url">
-        <a :href="item.url" target="_blank">{{ item.icon }}</a>
+      <li v-for="item in items" :key="item.title">
+        <a :href="item.url" target="_blank" ref="noopener noreferrer">{{ item.icon }}</a>
       </li>
       <li>san francisco, ca</li>
     </ul>
