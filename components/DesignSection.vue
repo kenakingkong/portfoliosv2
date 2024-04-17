@@ -10,7 +10,6 @@ export default {
   }),
   emits: {
     onDownload(event: any, zipfile: IDesignZipfile) {
-      event.preventDefault()
       const answer = prompt("Enter the password to download this zipfile!")
       if (answer == zipfile.access_code) {
         const anchorEl = document.createElement("a")
