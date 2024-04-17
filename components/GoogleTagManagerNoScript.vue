@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const runtimeConfig = useRuntimeConfig();
-const iframeSrc = `https://www.googletagmanager.com/ns.html?id=${runtimeConfig.public.GOOGLE_TAG_MANAGER_ID}`
+const iframeSrc = `https://www.googletagmanager.com/ns.html?id=${runtimeConfig.public.GOOGLE_TAG_MANAGER_ID || 'GTM-K3RRGZ6F'}`
 </script>
 
 <template>

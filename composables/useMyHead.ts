@@ -4,7 +4,7 @@ export function useMyHead<T>(title?: string, description?: string) {
   const myDescription = description || "i'm makena and this is my website";
 
   const runtimeConfig = useRuntimeConfig();
-  const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID;
+  const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID || "GTM-K3RRGZ6F";
 
   return useHead({
     title: myTitle,
