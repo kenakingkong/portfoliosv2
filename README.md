@@ -2,6 +2,8 @@
 
 ## stack
 - NuxtJS & Vue
+- Hosted on Vercel
+- Data in AWS & Firebase Realtime Database (to be moved)
 
 ## setup
 

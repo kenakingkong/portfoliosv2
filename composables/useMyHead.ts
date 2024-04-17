@@ -3,6 +3,9 @@ export function useMyHead<T>(title?: string, description?: string) {
   const myTitle = !!title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
   const myDescription = description || "i'm makena and this is my website";
 
+  const runtimeConfig = useRuntimeConfig();
+  const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID;
+
   return useHead({
     title: myTitle,
     meta: [
@@ -21,13 +24,11 @@ export function useMyHead<T>(title?: string, description?: string) {
     ],
     script: [
       {
-        src: "https://www.googletagmanager.com/gtag/js?id=G-2Q5G4LCTHZ",
-        type: "text/javascript",
-        async: true,
-      },
-      {
-        children:
-          "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}; gtag('js', new Date()); gtag('config', 'G-2Q5G4LCTHZ');",
+        children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${GTM_ID}');`,
       },
     ],
   });

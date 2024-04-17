@@ -60,6 +60,7 @@ main {
 </style>
 
 <template>
+  <GoogleTagManagerNoScript />
   <main>
     <NavBar />
     <ArtGallery />

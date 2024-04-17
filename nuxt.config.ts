@@ -52,8 +52,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
     public: {
-      FIREBASE_STORAGE_TOKEN: process.env.FIREBASE_STORAGE_TOKEN,
       GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
+      GOOGLE_TAG_MANAGER_ID: process.env.GOOGLE_TAG_MANAGER_ID,
     },
   },
 });

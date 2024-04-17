@@ -108,6 +108,7 @@ main {
 </style>
 
 <template>
+  <GoogleTagManagerNoScript />
   <main>
     <NavBar />
     <div class="container">

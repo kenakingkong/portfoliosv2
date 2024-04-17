@@ -2,10 +2,6 @@
 import { ISection } from '~/pages/dev.vue';
 
 export default {
-  setup() {
-    const runtimeConfig = useRuntimeConfig()
-    return { token: runtimeConfig.public.FIREBASE_STORAGE_TOKEN }
-  },
   inject: {
     sections: "devSections"
   },
