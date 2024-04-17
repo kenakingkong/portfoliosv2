@@ -53,8 +53,6 @@ h2 {
   min-width: 200px;
 }
 
-a {}
-
 figure {
   margin: 0;
   display: flex;
@@ -78,15 +76,21 @@ p {
   flex-direction: column;
   gap: var(--space-1);
 }
+
+button {
+  cursor: pointer;
+}
 </style>
 
 <template>
   <ul class="card">
     <li>
       <h2 class="card-title">{{ set.title }}</h2>
-      <a :href="set.zipfile.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')" @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
+      <button :id="set.zipfile.name"
+        :href="set.zipfile.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
+        @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
         Download Files
-      </a>
+      </button>
     </li>
     <li v-for="file in set.files" :key="file.name">
       <figure>

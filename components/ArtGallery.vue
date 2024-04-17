@@ -162,7 +162,7 @@ button {
       <li v-for="item in items" :key="item.id">
         <button @click="setActiveImg" :value="item.id">
           <img :src="item.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
-            :aria-label="item.title" loading="lazy" height="300" width="300" class="animate-fade-in" />
+            :aria-label="item.title" loading="lazy" height="300" width="300" class="gallery-item animate-fade-in" />
         </button>
       </li>
     </ul>
