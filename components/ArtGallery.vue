@@ -69,7 +69,6 @@ ul {
   padding: var(--space-1) 0;
 
   display: grid;
-  gap: var(--space-1);
   grid-auto-flow: column;
   grid-auto-columns: 300px;
   grid-template-rows: repeat(2, 300px);
@@ -77,6 +76,10 @@ ul {
   overflow-x: scroll;
 
   list-style-type: none;
+}
+
+li {
+  padding: var(--space-1)
 }
 
 @media only screen and (max-width: 600px) {
@@ -158,7 +161,8 @@ button {
     <ul>
       <li v-for="item in items" :key="item.id">
         <button @click="setActiveImg" :value="item.id">
-          <img :src="item.url" :aria-label="item.title" loading="lazy" height="300" width="300" />
+          <img :src="item.url.replace('https', 'http')" :aria-label="item.title" loading="lazy" height="300" width="300"
+            class="animate-fade-in" />
         </button>
       </li>
     </ul>
@@ -168,7 +172,8 @@ button {
       <div id="modal-overlay" class="modal__overlay" @click="handleModalOutsideClick">
         <div class="modal__content">
           <p>{{ activeImg.title }}</p>
-          <img :src="activeImg.url" :aria-label="activeImg.title" loading="lazy" height="300" width="300" />
+          <img :src="activeImg.url.replace('https', 'http')" :aria-label="activeImg.title" loading="lazy" height="300"
+            width="300" class="animate-fade-in" />
           <button @click="clearActiveImg" :value='undefined' title="close">x</button>
         </div>
       </div>

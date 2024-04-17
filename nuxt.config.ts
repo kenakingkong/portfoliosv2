@@ -7,8 +7,11 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content:
-            "i'm makena kong, a full-stack engineer and artist based in san francisco",
+          content: "i'm makena and this is my website",
+        },
+        {
+          name: "type",
+          content: "website",
         },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
@@ -33,7 +36,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
-    //'/api/*': { cache: { maxAge: 60 * 60 } },
+    "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,

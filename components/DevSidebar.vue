@@ -41,6 +41,11 @@ ul {
   list-style-type: none;
   padding: 0
 }
+
+#resume {
+  display: block;
+  padding-top: var(--space-2);
+}
 </style>
 
 <template>
@@ -54,7 +59,8 @@ ul {
           <NuxtLink :to="{ path: '/dev', hash: `#${item.id}` }">{{ item.header }}</NuxtLink>
         </li>
       </ul>
-      <a href="/assets/files/makena_kong_resume_july_2023.pdf" download>resume</a>
+      <a id="resume" href="http://assets.makenakong.com/resumes/makena_kong_resume_july_2023.pdf" target="_blank"
+        rel="noopener noreferrer">resume</a>
     </nav>
   </aside>
 </template>

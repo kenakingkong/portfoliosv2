@@ -11,7 +11,6 @@ export default {
   },
   computed: {
     items() {
-      console.log(this.state)
       return (this.state as any)[this.stateProperty as keyof typeof this.state]
     },
     showTopCategories() {
