@@ -1,5 +1,6 @@
 <script lang="ts">
 import { IArtItem } from "@/models"
+import { useMyHead } from "~/composables";
 
 export interface IArtState {
   activeCollection: string;
@@ -17,6 +18,8 @@ const assignRandomId = (item: IArtItem) => {
 
 export default {
   setup() {
+    useMyHead("art")
+
     const state = reactive<IArtState>({
       activeCollection: "all",
       collections: [],

@@ -1,8 +1,11 @@
 <script lang="ts">
 import { IDesignSet } from "@/models"
+import { useMyHead } from "~/composables"
 
 export default {
   setup() {
+    useMyHead("design")
+
     const sets = ref()
     async function fetchData() {
       const data = await $fetch<IDesignSet[]>('/api/design')

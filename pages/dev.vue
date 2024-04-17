@@ -9,6 +9,7 @@ import {
   IDevVolunteer,
   ISortable
 } from "@/models"
+import { useMyHead } from "~/composables"
 
 export interface ISection {
   id: string,
@@ -52,6 +53,8 @@ function sortDesc(a: ISortable, b: ISortable) {
 
 export default {
   setup() {
+    useMyHead("dev", 'makena kong is a full stack engineer based in san francisco')
+
     const sections = ref(sectionList)
 
     const state = reactive(stateList)

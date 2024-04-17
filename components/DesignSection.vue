@@ -84,13 +84,13 @@ p {
   <ul class="card">
     <li>
       <h2 class="card-title">{{ set.title }}</h2>
-      <a :href="set.zipfile.url.replace('https', 'http')" @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
+      <a :href="set.zipfile.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')" @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
         Download Files
       </a>
     </li>
     <li v-for="file in set.files" :key="file.name">
       <figure>
-        <img :src="file.url.replace('https', 'http')" loading="lazy" />
+        <img :src="file.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')" loading="lazy" />
         <figcaption>{{ file.name }}</figcaption>
       </figure>
     </li>

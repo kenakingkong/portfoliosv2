@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.md,.vue ./"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.2.2",
     "firebase": "^10.11.0",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",

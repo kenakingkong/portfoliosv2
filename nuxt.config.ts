@@ -6,6 +6,10 @@ export default defineNuxtConfig({
       viewport: "width=device-width, initial-scale=1",
       meta: [
         {
+          name: "title",
+          content: "makena <3",
+        },
+        {
           name: "description",
           content: "i'm makena and this is my website",
         },
@@ -49,6 +53,7 @@ export default defineNuxtConfig({
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
     public: {
       FIREBASE_STORAGE_TOKEN: process.env.FIREBASE_STORAGE_TOKEN,
+      GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
     },
   },
 });

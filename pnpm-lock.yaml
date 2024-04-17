@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@vercel/analytics':
+    specifier: ^1.2.2
+    version: 1.2.2
   firebase:
     specifier: ^10.11.0
     version: 10.11.0
@@ -2363,6 +2366,20 @@ packages:
       vite: 5.2.6
     transitivePeerDependencies:
       - rollup
+    dev: false
+
+  /@vercel/analytics@1.2.2:
+    resolution: {integrity: sha512-X0rctVWkQV1e5Y300ehVNqpOfSOufo7ieA5PIdna8yX/U7Vjz0GFsGf4qvAhxV02uQ2CVt7GYcrFfddXXK2Y4A==}
+    peerDependencies:
+      next: '>= 13'
+      react: ^18 || ^19
+    peerDependenciesMeta:
+      next:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      server-only: 0.0.1
     dev: false
 
   /@vercel/nft@0.26.4:
@@ -7595,6 +7612,10 @@ packages:
       send: 0.18.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
     dev: false
 
   /set-blocking@2.0.0:

@@ -161,8 +161,8 @@ button {
     <ul>
       <li v-for="item in items" :key="item.id">
         <button @click="setActiveImg" :value="item.id">
-          <img :src="item.url.replace('https', 'http')" :aria-label="item.title" loading="lazy" height="300" width="300"
-            class="animate-fade-in" />
+          <img :src="item.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
+            :aria-label="item.title" loading="lazy" height="300" width="300" class="animate-fade-in" />
         </button>
       </li>
     </ul>
@@ -172,8 +172,8 @@ button {
       <div id="modal-overlay" class="modal__overlay" @click="handleModalOutsideClick">
         <div class="modal__content">
           <p>{{ activeImg.title }}</p>
-          <img :src="activeImg.url.replace('https', 'http')" :aria-label="activeImg.title" loading="lazy" height="300"
-            width="300" class="animate-fade-in" />
+          <img :src="activeImg.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
+            :aria-label="activeImg.title" loading="lazy" height="300" width="300" class="animate-fade-in" />
           <button @click="clearActiveImg" :value='undefined' title="close">x</button>
         </div>
       </div>

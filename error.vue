@@ -1,7 +1,7 @@
-<script lang="ts">
-export default {
-  props: ['error']
-}
+<script setup lang="ts">
+const props = defineProps({
+  error: Object
+})
 </script>
 
 <style scoped lang="css">
@@ -33,7 +33,7 @@ div {
   <main>
     <NavBar />
     <div>
-      <h2>{{ error.statusCode }}</h2>
+      <h2 v-if="error">{{ error?.statusCode }}</h2>
       <h1>Nothing to see here!</h1>
     </div>
   </main>

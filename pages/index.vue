@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useMyHead } from '~/composables';
+
+useMyHead()
+</script>
+
 <style scoped lang="css">
 body {
   overflow: hidden;
