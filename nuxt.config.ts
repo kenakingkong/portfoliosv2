@@ -20,6 +20,13 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   components: true,
   devtools: { enabled: true },
+  hooks: {
+    close: () => {
+      // @see https://github.com/nuxt/cli/issues/169#issuecomment-1729300497
+      // Workaround for https://github.com/nuxt/cli/issues/169
+      process.exit(0);
+    },
+  },
   modules: [
     [
       "@nuxtjs/google-fonts",
