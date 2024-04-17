@@ -1,5 +1,5 @@
 <script lang="ts">
-import { IDesignSet } from '~/models';
+import { IDesignSet, IDesignZipfile } from '~/models';
 
 export default {
   props: {
@@ -9,11 +9,15 @@ export default {
     activeFileIndex: 0
   }),
   emits: {
-    onDownload(event: any, passcode: string) {
+    onDownload(event: any, zipfile: IDesignZipfile) {
+      event.preventDefault()
       const answer = prompt("Enter the password to download this zipfile!")
-      if (answer != passcode) {
-        event.preventDefault()
-        event.stopPropogation()
+      if (answer == zipfile.access_code) {
+        const anchorEl = document.createElement("a")
+        anchorEl.setAttribute("href", zipfile.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net'))
+        anchorEl.setAttribute("target", "_blank")
+        anchorEl.click()
+        document.removeChild(anchorEl)
       }
     }
   }
@@ -86,9 +90,7 @@ button {
   <ul class="card">
     <li>
       <h2 class="card-title">{{ set.title }}</h2>
-      <button :id="set.zipfile.name"
-        :href="set.zipfile.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
-        @click="$emit('onDownload', $event, set.zipfile.access_code)" class="card-zipfile">
+      <button :id="set.zipfile.name" @click="$emit('onDownload', $event, set.zipfile)" class="card-zipfile">
         Download Files
       </button>
     </li>
