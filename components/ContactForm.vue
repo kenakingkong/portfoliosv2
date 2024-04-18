@@ -7,9 +7,9 @@ export default {
       try {
         const { name, email, message } = event.target
         const body = {
-          name: name.value,
-          email: email.value,
-          message: message.value
+          name: name.value.trim(),
+          email: email.value.trim(),
+          message: message.value.trim()
         }
         await $fetch('/api/contact', {
           method: 'POST',
@@ -110,7 +110,7 @@ button:focus-visible {
 
 <template>
   <div>
-    <form @submit="onSubmit">
+    <form id="contact-form" @submit="onSubmit">
       <h1>message me!</h1>
       <fieldset>
         <label for="name-input">your name</label>
