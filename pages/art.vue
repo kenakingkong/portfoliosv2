@@ -38,7 +38,7 @@ export default {
     }
 
     async function fetchData() {
-      const data = await useFetch<IArtItem[]>('/api/art')
+      const data = await $fetch<IArtItem[]>('/api/art')
       const items = (data as any).artItems as IArtItem[]
       state["items"] = items.map(assignRandomId)
       state["collections"] = ["all", ...Array.from(new Set(items.map((item: IArtItem) => item.collection)))]
