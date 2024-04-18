@@ -73,7 +73,7 @@ span {
         <span class="inline-category">{{ key }}:</span>
         <ul class="ul-tight">
           <li v-for="item in value" :key="item.title">
-            <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }}</a>
+            <NuxtLink v-if="item.url" :to="item.url" target="_blank">{{ item.title }}</NuxtLink>
             <span v-else>{{ item.title }}</span>
             <span v-if="item.description">{{ item.description }}</span>
           </li>
@@ -82,7 +82,7 @@ span {
     </ul>
     <ul v-else>
       <li v-for="item in items" :key="item.title">
-        <a v-if="item.url" :href="item.url" target="_blank">{{ item.title }}</a>
+        <NuxtLink v-if="item.url" :to="item.url" target="_blank">{{ item.title }}</NuxtLink>
         <span v-else>{{ item.title }}</span>
         <span v-if="item.description">{{ item.description }}</span>
       </li>

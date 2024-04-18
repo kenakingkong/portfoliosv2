@@ -8,7 +8,7 @@ export default {
   data: () => ({
     activeFileIndex: 0
   }),
-  emits: {
+  methods: {
     onDownload(event: any, zipfile: IDesignZipfile) {
       const answer = prompt("Enter the password to download this zipfile!")
       if (answer == zipfile.access_code) {
@@ -19,7 +19,7 @@ export default {
         document.removeChild(anchorEl)
       }
     }
-  }
+  },
 }
 </script>
 
@@ -89,7 +89,7 @@ button {
   <ul class="card">
     <li>
       <h2 class="card-title">{{ set.title }}</h2>
-      <button :id="set.zipfile.name" @click="$emit('onDownload', $event, set.zipfile)" class="card-zipfile">
+      <button :id="set.zipfile.name" @click="onDownload($event, set.zipfile)" class="card-zipfile">
         Download Files
       </button>
     </li>

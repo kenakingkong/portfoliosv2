@@ -55,8 +55,8 @@ ul {
           <NuxtLink :to="{ path: '/dev', hash: `#${item.id}` }">{{ item.header }}</NuxtLink>
         </li>
       </ul>
-      <a id="resume" href="http://assets.makenakong.com/resumes/makena_kong_resume_july_2023.pdf" target="_blank"
-        rel="noopener noreferrer">resume</a>
+      <NuxtLink id="resume" to="http://assets.makenakong.com/resumes/makena_kong_resume_july_2023.pdf" target="_blank">
+        resume</NuxtLink>
     </nav>
   </aside>
 </template>

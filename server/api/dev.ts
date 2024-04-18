@@ -1,17 +1,22 @@
 import { child, get } from "firebase/database";
 import { dbRef } from "../db";
+import { ISortable } from "~/models";
+
+const tableNames = [
+  "devArticles",
+  "devEducation",
+  "devExperience",
+  "devProjects",
+  "devSocials",
+  "devSkills",
+  "devVolunteer",
+];
+
+const sortDesc = (a: ISortable, b: ISortable) => {
+  return b.sort - a.sort;
+};
 
 export default defineEventHandler(async () => {
-  const tableNames = [
-    "devArticles",
-    "devEducation",
-    "devExperience",
-    "devProjects",
-    "devSocials",
-    "devSkills",
-    "devVolunteer",
-  ];
-
   const resultList = await Promise.all(
     tableNames.map((tableName: string) =>
       get(child(dbRef, tableName))
@@ -30,7 +35,7 @@ export default defineEventHandler(async () => {
   );
 
   const results = resultList.reduce((acc, val) => {
-    acc[Object.keys(val)[0]] = Object.values(val)[0];
+    acc[Object.keys(val)[0]] = Object.values(val)[0].sort(sortDesc);
     return acc;
   }, {});
 

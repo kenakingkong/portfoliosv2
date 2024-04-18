@@ -46,7 +46,7 @@ li {
     </p>
     <ul>
       <li v-for="item in items" :key="item.title">
-        <a :href="item.url" target="_blank" ref="noopener noreferrer">{{ item.icon }}</a>
+        <NuxtLink :to="item.url" target="_blank">{{ item.icon }}</NuxtLink>
       </li>
       <li>san francisco, ca</li>
     </ul>

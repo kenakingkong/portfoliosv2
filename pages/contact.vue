@@ -1,12 +1,6 @@
-<script lang="ts">
-import { useMyHead } from "~/composables";
-
-
-export default {
-  setup() {
-    useMyHead("contact")
-  }
-}
+<script setup lang="ts">
+import { useMyHead } from '~/composables';
+useMyHead("contact")
 </script>
 
 <style scoped lang="css">

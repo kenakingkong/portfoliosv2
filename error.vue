@@ -12,7 +12,7 @@ body {
 main {
   height: 100vh;
   width: 100vw;
-  background: var(--gray-purple);
+  background: red;
   overflow: hidden;
 }
 

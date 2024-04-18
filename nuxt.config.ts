@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
-    "/api/*": { cache: { maxAge: 60 * 60 } },
+    // "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,

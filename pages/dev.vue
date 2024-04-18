@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import {
   IDevArticle,
   IDevEducation,
@@ -6,8 +6,7 @@ import {
   IDevProject,
   IDevSkill,
   IDevSocial,
-  IDevVolunteer,
-  ISortable
+  IDevVolunteer
 } from "@/models"
 import { useMyHead } from "~/composables"
 
@@ -37,50 +36,14 @@ const sectionList: ISection[] = [
   { id: "skills", header: "skills", stateProperty: "devSkills", categoryDisplay: "inline" },
 ]
 
-const stateList: IDevState = {
-  devArticles: [] as IDevArticle[],
-  devEducation: [] as IDevEducation[],
-  devExperience: [] as IDevExperience[],
-  devProjects: [] as IDevProject[],
-  devSocials: [] as IDevSocial[],
-  devSkills: [] as IDevSkill[],
-  devVolunteer: [] as IDevVolunteer[],
-}
+useMyHead("dev", 'makena kong is a full stack engineer based in san francisco')
 
-function sortDesc(a: ISortable, b: ISortable) {
-  return b.sort - a.sort
-}
+const sections = ref(sectionList)
 
-export default {
-  setup() {
-    useMyHead("dev", 'makena kong is a full stack engineer based in san francisco')
+const { data: state } = await useFetch<IDevState>('/api/dev')
 
-    const sections = ref(sectionList)
-
-    const state = reactive(stateList)
-
-    const update = (property: string, value: any) => {
-      state[property as keyof typeof state] = value
-    }
-
-    async function fetchAndSetValues() {
-      const data = await $fetch<IDevState>('/api/dev')
-      update("devSocials", (data as any).devSocials.sort(sortDesc))
-      sections.value.forEach((section) => {
-        const property = section.stateProperty
-        update(property, (data as any)[property].sort(sortDesc))
-      })
-    }
-
-    onMounted(fetchAndSetValues)
-
-    provide("devState", readonly(state));
-    provide("devUpdate", update)
-    provide("devSections", readonly(sections))
-
-    return { state, update, sections }
-  }
-}
+provide("devState", readonly(state));
+provide("devSections", readonly(sections))
 </script>
 
 <style scoped lang="css">

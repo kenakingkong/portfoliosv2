@@ -99,7 +99,9 @@ button {
   transition-duration: 150ms;
 }
 
-button:hover {
+button:hover,
+button:focus,
+button:focus-visible {
   background-color: var(--magenta);
   border: 1px solid var(--magenta);
   outline: 2px solid var(--magenta)

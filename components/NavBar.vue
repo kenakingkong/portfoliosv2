@@ -9,13 +9,11 @@ const defaultNavLinks: INavLink[] = [
   { title: "dev", to: "/dev" },
   { title: "art", to: "/art" },
   { title: "design", to: "/design" },
-  { title: "contact", to: "/contact" }
+  { title: "contact me", to: "/contact" }
 ]
 
-const route = useRoute()
 const props = defineProps<{ links?: INavLink[] }>()
 const navLinks = computed(() => props.links || defaultNavLinks)
-const activeLink = computed(() => route.name)
 </script>
 
 <style scoped lang="css">
@@ -60,6 +58,10 @@ nav ul a:hover {
 nav img {
   cursor: pointer;
 }
+
+.active-link {
+  color: var(--purple)
+}
 </style>
 
 <template>
@@ -68,8 +70,8 @@ nav img {
       <img src="@/assets/images/logo.svg" />
     </NuxtLink>
     <ul>
-      <li v-for="link in navLinks">
-        <NuxtLink :to="link.to">{{ link.title }}</NuxtLink>
+      <li v-for="link in navLinks" :key="link.to">
+        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink>
       </li>
     </ul>
   </nav>

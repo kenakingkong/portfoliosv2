@@ -1,22 +1,10 @@
-<script lang="ts">
+<script setup lang="ts">
 import { IDesignSet } from "@/models"
 import { useMyHead } from "~/composables"
 
-export default {
-  setup() {
-    useMyHead("design")
+useMyHead("design")
 
-    const sets = ref()
-    async function fetchData() {
-      const data = await $fetch<IDesignSet[]>('/api/design')
-      sets.value = (data as any).sort((a: IDesignSet, b: IDesignSet) => b.sort - a.sort)
-    }
-
-    onMounted(fetchData)
-
-    return { sets }
-  }
-}
+const { data: sets } = await useFetch<IDesignSet[]>('/api/design')
 </script>
 
 <style scoped lang="css">

@@ -63,6 +63,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--magenta)
+}
+
 button[data-active='true'] {
   color: var(--purple);
   text-decoration: underline;
@@ -82,7 +86,7 @@ button:hover {
     </ul>
     <ul>
       <li v-for="social in socials" :key="social.title">
-        <a :href="social.url" target="_blank">🔗 {{ social.title }}</a>
+        <NuxtLink :to="social.url" target="_blank">🔗 {{ social.title }}</NuxtLink>
       </li>
     </ul>
   </nav>
