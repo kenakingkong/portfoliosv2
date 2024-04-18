@@ -8,8 +8,8 @@ export default {
 
     const sets = ref()
     async function fetchData() {
-      const data = await $fetch<IDesignSet[]>('/api/design')
-      sets.value = data.sort((a: IDesignSet, b: IDesignSet) => b.sort - a.sort)
+      const data = await useFetch<IDesignSet[]>('/api/design')
+      sets.value = (data as any).sort((a: IDesignSet, b: IDesignSet) => b.sort - a.sort)
     }
 
     onMounted(fetchData)

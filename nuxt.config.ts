@@ -47,10 +47,11 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
-    "/api/*": { cache: { maxAge: 60 * 60 } },
+    // "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
+    AIRTABLE_TOKEN: process.env.AIRTABLE_TOKEN,
     public: {
       GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
       GOOGLE_TAG_MANAGER_ID: process.env.GOOGLE_TAG_MANAGER_ID,

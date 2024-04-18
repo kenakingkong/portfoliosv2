@@ -1,11 +1,13 @@
 <script lang="ts">
 import { IArtItem } from "@/models"
 import { useMyHead } from "~/composables";
+import { ISocialLink } from "~/models/SocialLink";
 
 export interface IArtState {
   activeCollection: string;
   collections: string[];
   items: IArtItem[]
+  socials: ISocialLink[]
 }
 
 const generateRandomId = () => {
@@ -23,7 +25,8 @@ export default {
     const state = reactive<IArtState>({
       activeCollection: "all",
       collections: [],
-      items: []
+      items: [],
+      socials: []
     })
 
     const update = (property: string, value: any) => {
@@ -35,9 +38,11 @@ export default {
     }
 
     async function fetchData() {
-      const data = await $fetch<IArtItem[]>('/api/art')
-      state["items"] = data.map(assignRandomId)
-      state["collections"] = ["all", ...Array.from(new Set(data.map((item: IArtItem) => item.collection)))]
+      const data = await useFetch<IArtItem[]>('/api/art')
+      const items = (data as any).artItems as IArtItem[]
+      state["items"] = items.map(assignRandomId)
+      state["collections"] = ["all", ...Array.from(new Set(items.map((item: IArtItem) => item.collection)))]
+      state["socials"] = (data as any).artSocials as ISocialLink[]
     }
 
     onMounted(fetchData)

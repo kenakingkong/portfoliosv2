@@ -8,11 +8,14 @@ export interface INavLink {
 const defaultNavLinks: INavLink[] = [
   { title: "dev", to: "/dev" },
   { title: "art", to: "/art" },
-  { title: "design", to: "/design" }
+  { title: "design", to: "/design" },
+  { title: "contact", to: "/contact" }
 ]
 
+const route = useRoute()
 const props = defineProps<{ links?: INavLink[] }>()
 const navLinks = computed(() => props.links || defaultNavLinks)
+const activeLink = computed(() => route.name)
 </script>
 
 <style scoped lang="css">

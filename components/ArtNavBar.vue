@@ -1,5 +1,6 @@
 <script lang="ts">
 import { IArtState } from '@/pages/art.vue';
+import { ISocialLink } from '~/models/SocialLink';
 
 export default {
   inject: {
@@ -15,6 +16,9 @@ export default {
     },
     updateCollection() {
       return this.updateActiveCollection as any
+    },
+    socials() {
+      return (this.state as IArtState).socials as ISocialLink[]
     }
   },
   methods: {
@@ -26,6 +30,12 @@ export default {
 </script>
 
 <style scoped lang="css">
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 ul {
   margin: 0;
   padding: var(--space-1);
@@ -40,7 +50,8 @@ ul {
   list-style-type: none;
 }
 
-button {
+button,
+a {
   border: none;
   background-color: transparent;
 
@@ -49,6 +60,7 @@ button {
   font-size: var(--text-sm);
 
   cursor: pointer;
+  text-decoration: none;
 }
 
 button[data-active='true'] {
@@ -66,6 +78,11 @@ button:hover {
     <ul>
       <li v-for="collection in collections" :key="collection">
         <button :data-active="isActive(collection)" @click="updateCollection(collection)">{{ collection }}</button>
+      </li>
+    </ul>
+    <ul>
+      <li v-for="social in socials" :key="social.title">
+        <a :href="social.url" target="_blank">🔗 {{ social.title }}</a>
       </li>
     </ul>
   </nav>

@@ -2,16 +2,29 @@ import { child, get } from "firebase/database";
 import { dbRef } from "../db";
 
 export default defineEventHandler(async () => {
-  return await get(child(dbRef, "artItems"))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val();
-      } else {
-        return [];
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      return [];
-    });
+  const tableNames = ["artItems", "artSocials"];
+
+  const resultList = await Promise.all(
+    tableNames.map((tableName: string) =>
+      get(child(dbRef, tableName))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            return { [tableName]: snapshot.val() };
+          } else {
+            return { [tableName]: [] };
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          return { [tableName]: [] };
+        })
+    )
+  );
+
+  const results = resultList.reduce((acc, val) => {
+    acc[Object.keys(val)[0]] = Object.values(val)[0];
+    return acc;
+  }, {});
+
+  return results;
 });

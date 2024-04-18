@@ -64,7 +64,7 @@ export default {
     }
 
     async function fetchAndSetValues() {
-      const data = await $fetch<IDevState>('/api/dev')
+      const data = await useFetch<IDevState>('/api/dev')
       update("devSocials", (data as any).devSocials.sort(sortDesc))
       sections.value.forEach((section) => {
         const property = section.stateProperty
