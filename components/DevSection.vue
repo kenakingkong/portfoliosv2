@@ -11,13 +11,13 @@ export default {
   },
   computed: {
     items() {
-      return (this.state as any)[this.stateProperty as keyof typeof this.state]
+      return (this.state as any)[this.stateProperty as keyof typeof this.state].filter((x: any) => !!x)
     },
     showTopCategories() {
-      return this.categoryDisplay == "top" && !!this.items[0]?.category
+      return this.categoryDisplay == "top" && !!this.items.length && !!this.items[0]?.category
     },
     showInlineCategories() {
-      return this.categoryDisplay == "inline" && !!this.items[0]?.category
+      return this.categoryDisplay == "inline" && !!this.items.length && !!this.items[0]?.category
     },
     categoryItems() {
       return Object
