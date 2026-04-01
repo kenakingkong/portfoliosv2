@@ -11,16 +11,16 @@
     "lint": "eslint --ext .js,.md,.vue ./"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.2.2",
-    "firebase": "^10.11.0",
-    "nuxt": "^3.11.1",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "@vercel/analytics": "^1.6.1",
+    "firebase": "^10.14.1",
+    "nuxt": "^3.21.2",
+    "vue": "^3.5.31",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/svg": "^0.4.1",
-    "@types/lodash": "^4.17.0",
-    "gsap": "^3.12.5"
+    "@types/lodash": "^4.17.24",
+    "gsap": "^3.14.2"
   }
 }
