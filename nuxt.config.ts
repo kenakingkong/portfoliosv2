@@ -32,12 +32,14 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    "@nuxt/content",
     [
       "@nuxtjs/google-fonts",
       {
         families: {
           "Open+Sans": true,
           "Space+Grotesk": true,
+          "Space+Mono": true
         },
       },
     ],
@@ -47,6 +49,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/": { prerender: true },
+    '/case-studies/**': { prerender: true },
     // "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {

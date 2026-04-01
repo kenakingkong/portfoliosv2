@@ -1,7 +1,8 @@
-export function useMyHead<T>(title?: string, description?: string) {
+export function useMyHead<T>(title?: string, description?: string, type?: string) {
   const DEFAULT_TITLE = "makena kong <3";
   const myTitle = !!title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
   const myDescription = description || "i'm makena and this is my website";
+  const myType = type || "website"
 
   const runtimeConfig = useRuntimeConfig();
   const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID || "GTM-K3RRGZ6F";
@@ -19,7 +20,7 @@ export function useMyHead<T>(title?: string, description?: string) {
       },
       {
         name: "type",
-        content: "website",
+        content: myType,
       },
     ],
     script: [
