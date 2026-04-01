@@ -5,6 +5,7 @@ export * from "./DesignSet";
 export * from "./DesignZipfile";
 
 export * from "./DevArticle";
+export * from "./DevCaseStudy";
 export * from "./DevEducation";
 export * from "./DevExperience";
 export * from "./DevProject";

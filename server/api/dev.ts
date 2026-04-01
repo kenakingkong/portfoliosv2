@@ -4,6 +4,7 @@ import { ISortable } from "~/models";
 
 const tableNames = [
   "devArticles",
+  "devCaseStudies",
   "devEducation",
   "devExperience",
   "devProjects",

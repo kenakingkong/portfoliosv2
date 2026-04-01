@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   IDevArticle,
+  IDevCaseStudy,
   IDevEducation,
   IDevExperience,
   IDevProject,
@@ -19,6 +20,7 @@ export interface ISection {
 
 export interface IDevState {
   devArticles: IDevArticle[]
+  devCaseStudies: IDevCaseStudy[]
   devEducation: IDevEducation[]
   devExperience: IDevExperience[]
   devProjects: IDevProject[]
@@ -30,6 +32,7 @@ export interface IDevState {
 const sectionList: ISection[] = [
   { id: "experience", header: "experience", stateProperty: "devExperience" },
   { id: "volunteer", header: "volunteer", stateProperty: "devVolunteer" },
+  { id: "casestudies", header: "case studies", stateProperty: "devCaseStudies" },
   { id: "articles", header: "articles", stateProperty: "devArticles" },
   { id: "projects", header: "projects", stateProperty: "devProjects", categoryDisplay: "top" },
   { id: "education", header: "education", stateProperty: "devEducation" },
