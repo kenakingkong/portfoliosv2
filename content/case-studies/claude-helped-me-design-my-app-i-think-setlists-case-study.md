@@ -121,4 +121,4 @@ In terms of creativity and uniqueness, I think that's up to us. I'm not sure AI 
 
 If you have any thoughts/comments/feelings, feel free to [share them with me](/contact).
 
-_This article was cross-posted on [medium](https://medium.com/@makenakong/?utm_campaign=setlists-case-study)_
+_This article was cross-posted on [medium](https://medium.com/@makenakong/claude-helped-me-design-my-app-i-think-5d93e4aafd8d/?utm_campaign=setlists-case-study)_
