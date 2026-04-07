@@ -1,5 +1,4 @@
-import { child, get } from "firebase/database";
-import { dbRef } from "../db";
+import { db } from "../db";
 import { ISortable } from "~/models";
 
 const tableNames = [
@@ -13,20 +12,16 @@ const tableNames = [
   "devVolunteer",
 ];
 
-const sortDesc = (a: ISortable, b: ISortable) => {
-  return b.sort - a.sort;
-};
+const sortDesc = (a: ISortable, b: ISortable) => b.sort - a.sort;
 
 export default defineEventHandler(async () => {
   const resultList = await Promise.all(
     tableNames.map((tableName: string) =>
-      get(child(dbRef, tableName))
+      db
+        .ref(tableName)
+        .once("value")
         .then((snapshot) => {
-          if (snapshot.exists()) {
-            return { [tableName]: snapshot.val() };
-          } else {
-            return { [tableName]: [] };
-          }
+          return { [tableName]: snapshot.exists() ? snapshot.val() : [] };
         })
         .catch((error) => {
           console.error(error);
@@ -35,10 +30,8 @@ export default defineEventHandler(async () => {
     )
   );
 
-  const results = resultList.reduce((acc, val) => {
+  return resultList.reduce((acc: Record<string, unknown>, val) => {
     acc[Object.keys(val)[0]] = Object.values(val)[0].sort(sortDesc);
     return acc;
   }, {});
-
-  return results;
 });

@@ -1,19 +1,14 @@
-import { child, get } from "firebase/database";
-import { dbRef } from "../db";
+import { db } from "../db";
 import { ISortable } from "~/models";
 
-const sortDesc = (a: ISortable, b: ISortable) => {
-  return b.sort - a.sort;
-};
+const sortDesc = (a: ISortable, b: ISortable) => b.sort - a.sort;
 
 export default defineEventHandler(async () => {
-  return await get(child(dbRef, "designItems"))
+  return await db
+    .ref("designItems")
+    .once("value")
     .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val().sort(sortDesc);
-      } else {
-        return [];
-      }
+      return snapshot.exists() ? snapshot.val().sort(sortDesc) : [];
     })
     .catch((error) => {
       console.error(error);

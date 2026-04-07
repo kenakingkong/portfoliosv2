@@ -44,9 +44,6 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  nitro: {
-    plugins: ["~/server/plugins/database.ts"],
-  },
   routeRules: {
     "/": { prerender: true },
     '/case-studies/**': { prerender: true },
