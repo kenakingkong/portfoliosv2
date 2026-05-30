@@ -14,3 +14,5 @@ export * from "./DevSkill";
 export * from "./DevVolunteer";
 
 export * from "./Sortable";
+
+export * from "./Wordle";

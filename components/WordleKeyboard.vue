@@ -1,13 +1,9 @@
 <script setup lang="ts">
-const { state } = defineProps<{
-  state: {
-    keyStateMap: Record<string, string>;
-  }
-}>();
+import { WordleState } from '~/models';
 
-const emit = defineEmits<{
-  (e: 'click', key: string): void;
-}>();
+const { state } = defineProps<{ state: WordleState }>();
+
+const emit = defineEmits<{ (e: 'click', key: string): void }>();
 
 const KEYBOARD_ROWS = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -20,20 +16,20 @@ const KEYBOARD_ROWS = [
 .keyboard-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: calc(var(--space-1) / 4);
   font-family: var(--font-mono);
 }
 
 .keyboard-row {
   display: flex;
-  gap: 0.25rem;
+  gap: calc(var(--space-1) / 4);
   justify-content: center;
 }
 
 .key {
-  width: 2.5rem;
-  height: 3rem;
-  border: 2px solid black;
+  width: var(--space-2);
+  height: var(--space-2);
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,10 +58,10 @@ const KEYBOARD_ROWS = [
 
 <template>
   <div class="keyboard-container">
-    <div v-for="(row, index) in KEYBOARD_ROWS" :key="index" class="keyboard-row">
-      <button v-for="key in row" :key="key" :class="['key', state.keyStateMap[key] || '']"
+    <div v-for="(row, index) in KEYBOARD_ROWS" :key="`keyboard-row-${index}`" class="keyboard-row">
+      <button v-for="key in row" :key="`keyboard-key-${key}`" :class="['key', state.keyStateMap[key] || '']"
         @click="() => $emit('click', key)">
-        {{ key }}
+        {{ key == "Backspace" ? '⌫' : key == "Enter" ? '⏎' : key }}
       </button>
     </div>
   </div>

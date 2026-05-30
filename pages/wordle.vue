@@ -47,7 +47,26 @@ const CORP_TERMS = [
 ]
 </script>
 
+<style scoped lang="css">
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4);
+}
+
+.title {
+  font-size: var(--text-md);
+  font-weight: bold;
+  font-family: var(--font-mono);
+}
+</style>
+
 <template>
-  <button>Reset</button>
-  <Wordle term="SLANG" />
+  <div class="container">
+    <h1 class="title">Guess the Gen-Z term</h1>
+    <Wordle term="SLANG" />
+    <button>Reset</button>
+  </div>
 </template>
