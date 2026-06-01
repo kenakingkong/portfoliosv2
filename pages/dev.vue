@@ -71,6 +71,12 @@ main {
   gap: var(--space-2);
   overflow-y: scroll;
 }
+
+.ai-summary-disclaimer {
+  font-family: var(--font-sans);
+  font-size: var(--text-xxs);
+  color: gray;
+}
 </style>
 
 <template>
@@ -79,9 +85,13 @@ main {
     <NavBar />
     <div class="container">
       <DevSidebar />
-      <div class="content">
+      <div class="content"> 
+        <DevSummary />
         <DevHeader />
         <DevSections />
+        <p class="ai-summary-disclaimer">
+          * The AI generated summary was written by myself and not by AI.
+        </p>
       </div>
     </div>
   </main>
