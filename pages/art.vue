@@ -44,7 +44,7 @@ provide("artUpdateCollection", updateActiveCollection)
 
 <style scoped lang="css">
 main {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   overflow: hidden;
   background-color: white;
@@ -57,6 +57,7 @@ main {
   <GoogleTagManagerNoScript />
   <main>
     <NavBar />
+    <ArtFeatureGallery v-if="state.items.length" :art-items="state.items.filter((item: IArtItem) => item.collection === 'pet portraits')" />
     <ArtGallery />
     <ArtNavBar />
   </main>
