@@ -5,7 +5,7 @@ const showSources = ref(false)
 const showPlaceholder = ref(true)
 const bodyRef = ref<HTMLElement | null>(null)
 
-const { start } = useTypingAnimation()
+const { start, isDone } = useTypingAnimation()
 
 function startTyping() {
   showSummary.value = true
@@ -128,7 +128,7 @@ ul {
         <p class="disclaimer">
           Responses can be inaccurate. We recommend you check important facts.
         </p>
-        <button class="sources-button" @click="showSources = !showSources">
+        <button v-if="isDone" class="sources-button" @click="showSources = !showSources">
           Sources (2)
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.99854 7.00153L12.0006 17.0027L21.0027 7.00153" stroke="black" stroke-width="2"
