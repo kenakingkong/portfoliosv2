@@ -108,8 +108,8 @@ ul {
       </div>
       <div v-else ref="bodyRef" class="body">
         <p>
-          Makena Kong is a <span class="highlight" data-bg-reveal>full stack software engineer</span> who spent <span
-            class="highlight" data-bg-reveal>5
+          Makena Kong is a <span class="highlight" data-bg-reveal>full stack software engineer with a product
+            mindset</span> who spent <span class="highlight" data-bg-reveal>5
             years owning products</span> E2E and speed-running mvps at a small
           fintech startup.
         </p>
