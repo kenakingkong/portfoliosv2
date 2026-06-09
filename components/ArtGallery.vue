@@ -2,18 +2,39 @@
 import { IArtItem } from '~/models';
 import { IArtState } from '~/pages/art.vue';
 
-function shuffleArray(array: IArtItem[]) {
-  return array
-  // return array.map(value => ({ value, sort: Math.random() }))
-  //   .sort((a, b) => a.sort - b.sort)
-  //   .map(({ value }) => value)
-}
-
 export default {
   setup() {
     const activeImg = ref();
+    const showAll = ref(false);
+
+    const containerRef = ref<HTMLElement | null>(null);
+    const containerWidth = ref(1200);
+    let resizeObserver: ResizeObserver | null = null;
+
+    const colConfig = computed(() => {
+      if (containerWidth.value >= 1200) return { cols: 4, max: 12 };
+      if (containerWidth.value >= 600) return { cols: 3, max: 9 };
+      return { cols: 2, max: 6 };
+    });
+
+    const maxItemsShowing = computed(() => colConfig.value.max);
+    const gridCols = computed(() => colConfig.value.cols);
+
+    onMounted(() => {
+      if (containerRef.value) {
+        resizeObserver = new ResizeObserver(entries => {
+          containerWidth.value = entries[0].contentRect.width;
+        });
+        resizeObserver.observe(containerRef.value);
+      }
+    });
+    onUnmounted(() => resizeObserver?.disconnect());
 
     const state = inject('artState') as IArtState
+
+    watch(() => state.activeCollection, () => {
+      showAll.value = false
+    })
 
     const findImg = (id: string) => {
       return state.items.find((item: IArtItem) => item.id == id)
@@ -32,15 +53,26 @@ export default {
       activeImg.value = undefined
     }
 
-    return { state, activeImg, setActiveImg, clearActiveImg }
+    return { state, activeImg, setActiveImg, clearActiveImg, showAll, maxItemsShowing, containerRef, gridCols }
   },
   computed: {
-    items() {
+    filteredItems() {
       const { activeCollection, items } = this.state
+
       if (activeCollection != "all") {
-        return shuffleArray(items.filter((item: IArtItem) => item.collection == activeCollection))
+        return items.filter((item: IArtItem) => item.collection == activeCollection)
       }
-      return shuffleArray(items)
+
+      return items
+    },
+    hasMore() {
+      return this.filteredItems.length > this.maxItemsShowing
+    },
+    items() {
+      if (this.showAll || !this.hasMore) {
+        return this.filteredItems
+      }
+      return this.filteredItems.slice(0, this.maxItemsShowing)
     }
   },
   methods: {
@@ -54,42 +86,30 @@ export default {
 </script>
 
 <style scoped lang="css">
-.container {
-  min-width: 0;
-  height: 100%;
-  max-height: 100%;
-  overflow-y: hidden;
+.gallery-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-end;
+  gap: var(--space-1);
 }
 
-ul {
+.gallery {
+  width: 100%;
+  min-width: 0;
   margin: 0;
-  padding: var(--space-1) 0;
+  padding: 0;
 
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 300px;
-  grid-template-rows: repeat(2, 300px);
-  grid-auto-rows: 0px;
-  overflow-x: scroll;
-
   list-style-type: none;
 }
 
-li {
-  padding: var(--space-1)
+.gallery-item-container {
+  padding: calc(var(--space-1)/4);
+  aspect-ratio: 1;
 }
 
-@media only screen and (max-width: 600px) {
-  ul {
-    grid-auto-columns: 200px;
-    grid-template-rows: repeat(2, 200px);
-  }
-}
-
-button {
+.gallery-item {
   height: 100%;
   width: 100%;
   padding: 0;
@@ -99,7 +119,7 @@ button {
   overflow: hidden;
 }
 
-.container img {
+.gallery-container .gallery-item-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -109,8 +129,31 @@ button {
   transition-duration: 150ms;
 }
 
-.container img:hover {
+.gallery-container .gallery-item-img:hover {
   scale: 105%;
+}
+
+.gallery-show-all-button {
+  border: none;
+  background-color: transparent;
+
+  font-family: var(--font-space);
+  font-weight: lighter;
+  font-size: var(--text-md);
+  letter-spacing: -7%;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.gallery-show-all-button[data-active='true'] {
+  color: var(--purple);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.gallery-show-all-button:hover {
+  color: var(--magenta);
 }
 
 .modal__overlay {
@@ -157,15 +200,18 @@ button {
 </style>
 
 <template>
-  <div class="container">
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        <button @click="setActiveImg" :value="item.id">
+  <div ref="containerRef" class="gallery-container">
+    <ul class="gallery" :style="{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }">
+      <li v-for="item in items" :key="item.id" class="gallery-item-container">
+        <button @click="setActiveImg" :value="item.id" class="gallery-item">
           <img :id="item.title" :src="item.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
-            :aria-label="item.title" loading="lazy" height="300" width="300" class="gallery-item animate-fade-in" />
+            :aria-label="item.title" loading="lazy" height="300" width="300" class="gallery-item-img animate-fade-in" />
         </button>
       </li>
     </ul>
+    <button v-if="hasMore && !showAll" @click="showAll = true" class="gallery-show-all-button">
+      Show all images
+    </button>
   </div>
   <Teleport to="body">
     <div v-if="!!activeImg">
