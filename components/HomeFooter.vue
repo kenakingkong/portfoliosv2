@@ -6,7 +6,7 @@
   padding: var(--space-1);
   font-family: var(--font-space);
   font-size: var(--text-xs);
-  border-right: 1px solid black;
+  border: 1px solid black;
 }
 
 .section__title {

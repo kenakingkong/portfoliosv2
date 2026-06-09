@@ -80,13 +80,22 @@ main {
   margin: auto;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
 }
 
 .section__copyright-text {
   text-align: center;
   font-family: var(--font-space);
   font-size: var(--text-xs);
+}
+
+@media only screen and (max-width: 600px) {
+  .section__aura {
+    font-size: var(--text-lg);
+  }
+
+  .section__footer {
+    flex-direction: column;
+  }
 }
 </style>
 

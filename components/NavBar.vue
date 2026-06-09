@@ -20,7 +20,7 @@ const navLinks = computed(() => props.links || defaultNavLinks)
 nav {
   padding: var(--space-1);
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-1);
   justify-content: space-between;
 
   position: -webkit-sticky;
@@ -32,6 +32,7 @@ nav {
 nav ul {
   width: 100%;
   margin: 0;
+  padding: 0;
 
   display: flex;
   align-items: center;
@@ -68,6 +69,12 @@ nav img {
 .link-star {
   padding: 4px
 }
+
+@media only screen and (max-width: 600px) {
+  nav ul {
+    font-size: var(--text-xs);
+  }
+}
 </style>
 
 <template>
@@ -77,7 +84,8 @@ nav img {
     </NuxtLink>
     <ul>
       <li v-for="link in navLinks" :key="link.to">
-        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink><span class="link-star">✶</span>
+        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink><span
+          v-if="link.to != '/contact'" class="link-star">✶</span>
       </li>
     </ul>
   </nav>
