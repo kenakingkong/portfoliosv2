@@ -1,6 +1,5 @@
 <script lang="ts">
 import { IArtState } from '@/pages/art.vue';
-import { ISocialLink } from '~/models/SocialLink';
 
 export default {
   inject: {
@@ -16,9 +15,6 @@ export default {
     },
     updateCollection() {
       return this.updateActiveCollection as any
-    },
-    socials() {
-      return (this.state as IArtState).socials as ISocialLink[]
     }
   },
   methods: {
@@ -30,63 +26,61 @@ export default {
 </script>
 
 <style scoped lang="css">
-nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-ul {
+.collection-container {
   margin: 0;
-  padding: var(--space-1);
-  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0;
 
   display: flex;
-  gap: var(--space-1);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: calc(var(--space-1)/2);
 
   white-space: nowrap;
-
   list-style-type: none;
 }
 
-button,
-a {
+.collection-item {
   border: none;
   background-color: transparent;
 
   font-family: var(--font-space);
-  font-weight: bold;
-  font-size: var(--text-sm);
+  font-weight: lighter;
+  font-size: var(--text-md);
+  letter-spacing: -7%;
+  text-transform: capitalize;
+  text-decoration: none;
 
   cursor: pointer;
-  text-decoration: none;
 }
 
-a:hover {
-  color: var(--magenta)
-}
-
-button[data-active='true'] {
+.collection-item[data-active='true'] {
   color: var(--purple);
   text-decoration: underline;
+  font-weight: bold;
 }
 
-button:hover {
+.collection-item:hover {
   color: var(--magenta);
+}
+
+@media screen and (max-width: 600px) {
+  .collection-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .collection-item {
+    font-size: var(--text-sm);
+  }
 }
 </style>
 
 <template>
   <nav>
-    <ul>
-      <li v-for="collection in collections" :key="collection">
-        <button :data-active="isActive(collection)" @click="updateCollection(collection)">{{ collection }}</button>
-      </li>
-    </ul>
-    <ul>
-      <li v-for="social in socials" :key="social.title">
-        <NuxtLink :to="social.url" target="_blank">🔗 {{ social.title }}</NuxtLink>
+    <ul class="collection-container">
+      <li v-for="collection in collections" :key="collection" class="collection-item-container">
+        <button :data-active="isActive(collection)" @click="updateCollection(collection)" class="collection-item">
+          {{ collection }}
+        </button>
       </li>
     </ul>
   </nav>

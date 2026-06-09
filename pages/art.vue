@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { IArtItem } from "@/models"
+import ArtNavBar from "~/components/ArtNavBar.vue";
 import { useMyHead } from "~/composables";
 import { ISocialLink } from "~/models/SocialLink";
 
@@ -44,12 +45,50 @@ provide("artUpdateCollection", updateActiveCollection)
 
 <style scoped lang="css">
 main {
-  /* height: 100vh; */
   width: 100vw;
+  padding: var(--space-1);
+  padding-top: 0;
   overflow: hidden;
   background-color: white;
+
   display: flex;
   flex-direction: column;
+}
+
+.title {
+  font-size: var(--text-xxl);
+  font-family: var(--font-space);
+  font-weight: lighter;
+  letter-spacing: -7%;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  padding: calc(var(--space-1)/2) 0;
+}
+
+.gallery {
+  width: 100%;
+  padding: var(--space-1)
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: var(--text-xl);
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .gallery {
+    padding: 0;
+  }
 }
 </style>
 
@@ -57,8 +96,16 @@ main {
   <GoogleTagManagerNoScript />
   <main>
     <NavBar />
-    <ArtFeatureGallery v-if="state.items.length" :art-items="state.items.filter((item: IArtItem) => item.collection === 'pet portraits')" />
-    <ArtGallery />
-    <ArtNavBar />
+    <h1 class="title">Artwork</h1>
+    <div class="container">
+      <aside class="sidebar">
+        <ArtNavBar />
+      </aside>
+      <div class="gallery">
+        <ArtGallery />
+      </div>
+    </div>
+    <!-- <ArtFeatureGallery v-if="state.items.length"
+      :art-items="state.items.filter((item: IArtItem) => item.collection === 'pet portraits')" /> -->
   </main>
 </template>
