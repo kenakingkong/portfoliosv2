@@ -39,7 +39,7 @@ const sectionList: ISection[] = [
   { id: "skills", header: "skills", stateProperty: "devSkills", categoryDisplay: "inline" },
 ]
 
-useMyHead("dev", 'makena kong is a full stack engineer based in san francisco')
+useMyHead("Dev", 'Makena Kong is a Senior Fullstack Engineer based in San Francisco.')
 
 const sections = ref(sectionList)
 

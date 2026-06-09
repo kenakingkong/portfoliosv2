@@ -38,6 +38,10 @@ section {
   max-width: 40rem;
 }
 
+h2, .inline-category, .item-title {
+  text-transform: capitalize;
+}
+
 ul {
   padding: 0;
   display: flex;
@@ -73,8 +77,8 @@ span {
         <span class="inline-category">{{ key }}:</span>
         <ul class="ul-tight">
           <li v-for="item in value" :key="item.title">
-            <NuxtLink v-if="item.url" :to="item.url" target="_blank">{{ item.title }}</NuxtLink>
-            <span v-else>{{ item.title }}</span>
+            <NuxtLink v-if="item.url" :to="item.url" target="_blank" class="item-title">{{ item.title }}</NuxtLink>
+            <span class="item-title" v-else>{{ item.title }}</span>
             <span v-if="item.description">{{ item.description }}</span>
           </li>
         </ul>
@@ -82,8 +86,8 @@ span {
     </ul>
     <ul v-else>
       <li v-for="item in items" :key="item.title">
-        <NuxtLink v-if="item.url" :to="item.url" target="_blank">{{ item.title }}</NuxtLink>
-        <span v-else>{{ item.title }}</span>
+        <NuxtLink v-if="item.url" :to="item.url" target="_blank" class="item-title">{{ item.title }}</NuxtLink>
+        <span class="item-title" v-else>{{ item.title }}</span>
         <span v-if="item.description">{{ item.description }}</span>
       </li>
     </ul>

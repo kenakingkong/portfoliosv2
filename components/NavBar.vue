@@ -6,10 +6,10 @@ export interface INavLink {
 }
 
 const defaultNavLinks: INavLink[] = [
-  { title: "dev", to: "/dev" },
-  { title: "art", to: "/art" },
-  { title: "design", to: "/design" },
-  { title: "contact me", to: "/contact" }
+  { title: "Software", to: "/dev" },
+  { title: "Artwork", to: "/art" },
+  { title: "Design", to: "/design" },
+  { title: "Contact Me", to: "/contact" }
 ]
 
 const props = defineProps<{ links?: INavLink[] }>()
@@ -20,7 +20,7 @@ const navLinks = computed(() => props.links || defaultNavLinks)
 nav {
   padding: var(--space-1);
   display: flex;
-  gap: var(--space-2);
+  gap: var(--space-1);
   justify-content: space-between;
 
   position: -webkit-sticky;
@@ -32,14 +32,16 @@ nav {
 nav ul {
   width: 100%;
   margin: 0;
+  padding: 0;
 
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-1);
 
-  font-family: var(--font-sans);
-  font-weight: bold;
+  font-family: var(--font-space);
+  font-size: var(--text-sm);
+  letter-spacing: -5%;
+  font-weight: light;
 
   list-style-type: none;
 }
@@ -52,7 +54,7 @@ nav ul a {
 
 
 nav ul a:hover {
-  color: var(--magenta);
+  color: var(--purple);
 }
 
 nav img {
@@ -60,18 +62,30 @@ nav img {
 }
 
 .active-link {
-  color: var(--purple)
+  color: var(--purple);
+  text-decoration: underline;
+}
+
+.link-star {
+  padding: 4px
+}
+
+@media only screen and (max-width: 600px) {
+  nav ul {
+    font-size: var(--text-xs);
+  }
 }
 </style>
 
 <template>
   <nav>
     <NuxtLink to="/">
-      <img src="@/assets/images/logo.svg" />
+      <img src="@/assets/images/logo.svg" alt="mak logo" />
     </NuxtLink>
     <ul>
       <li v-for="link in navLinks" :key="link.to">
-        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink>
+        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink><span
+          v-if="link.to != '/contact'" class="link-star">✶</span>
       </li>
     </ul>
   </nav>
