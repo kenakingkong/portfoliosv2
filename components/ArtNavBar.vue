@@ -55,7 +55,6 @@ export default {
 .collection-item[data-active='true'] {
   color: var(--purple);
   text-decoration: underline;
-  font-weight: bold;
 }
 
 .collection-item:hover {
