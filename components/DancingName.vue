@@ -51,6 +51,12 @@ export default {
 </script>
 
 <style scoped lang="css">
+.container {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 0, 255, 0.5) 0%, rgba(255, 240, 245, 1) 100%);
+}
+
 h1 {
   display: none;
 }
@@ -67,25 +73,25 @@ div {
 p {
   margin: var(--space-y-2);
   font-size: var(--text-xxl);
-  font-weight: 600;
-  font-family: var(--font-sans);
+  font-weight: light;
+  font-family: var(--font-space);
   line-height: 50%;
   display: inline-block;
 }
 </style>
 
 <template>
-  <div>
+  <div class="container">
     <h1>makena kong</h1>
     <div ref="content" @mouseenter="animate">
-      <p>m</p>
+      <p>M</p>
       <p>a</p>
       <p>k</p>
       <p>e</p>
       <p>n</p>
       <p>a</p>
       <br/>
-      <p>k</p>
+      <p>K</p>
       <p>o</p>
       <p>n</p>
       <p>g</p>
