@@ -38,9 +38,8 @@ ul {
   padding: 0
 }
 
-#resume {
-  display: block;
-  padding-top: var(--space-2);
+li {
+  text-transform: capitalize;
 }
 </style>
 
@@ -55,9 +54,6 @@ ul {
           <NuxtLink :to="{ path: '/dev', hash: `#${item.id}` }">{{ item.header }}</NuxtLink>
         </li>
       </ul>
-      <!-- <a id="resume" href="/makena_kong_resume_january_2025.pdf" download>
-        resume
-      </a> -->
     </nav>
   </aside>
 </template>

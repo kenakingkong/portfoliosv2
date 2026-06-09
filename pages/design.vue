@@ -2,7 +2,7 @@
 import { IDesignSet } from "@/models"
 import { useMyHead } from "~/composables"
 
-useMyHead("design")
+useMyHead("Design")
 
 const { data: sets } = await useFetch<IDesignSet[]>('/api/design')
 </script>

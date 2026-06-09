@@ -30,25 +30,25 @@ ul {
 
 li {
   font-size: var(--text-xs);
+  text-transform: capitalize;
 }
 </style>
 
 <template>
   <section id="about">
-    <h1>makena kong</h1>
+    <h1>Makena Kong</h1>
   </section>
   <section>
-    <h2>about me</h2>
+    <h2>About Me</h2>
     <p>
-      I’m a full-stack engineer that leans towards the front end and a good eye for UI/UX
-      design.
-      I’m a quick prototyper and iterate fast.
+      I'm a Fullstack Engineer with strong product and design instincts. I think in systems, prototype fast, and care
+      as much about why we're building something as how.
     </p>
     <ul>
       <li v-for="item in items" :key="item.title">
         <NuxtLink :to="item.url" target="_blank">{{ item.icon }}</NuxtLink>
       </li>
-      <li>san francisco, ca</li>
+      <li>San Francisco, CA</li>
     </ul>
   </section>
 </template>

@@ -1,8 +1,14 @@
-export function useMyHead<T>(title?: string, description?: string, type?: string) {
-  const DEFAULT_TITLE = "makena kong <3";
+export function useMyHead<T>(
+  title?: string,
+  description?: string,
+  type?: string,
+) {
+  const DEFAULT_TITLE = "Makena Kong <3";
   const myTitle = !!title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
-  const myDescription = description || "i'm makena and this is my website";
-  const myType = type || "website"
+  const myDescription =
+    description ||
+    "I'm Makena. Senior Fullstack Engineer, volunteer coding teacher and how-to guide writer. Started _mak_archives knitting and crochet pattern brand. Paints pet portraits and other art. Based in the San Francisco Bay Area.";
+  const myType = type || "website";
 
   const runtimeConfig = useRuntimeConfig();
   const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID || "GTM-K3RRGZ6F";

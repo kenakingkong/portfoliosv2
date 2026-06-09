@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMyHead } from '~/composables';
 
-useMyHead("case studies")
+useMyHead("Case Studies")
 
 const { data: articles } = await useAsyncData('case-studies', () =>
   queryContent('case-studies').sort({ date: -1 }).find()

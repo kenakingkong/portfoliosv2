@@ -11,7 +11,7 @@ export interface IArtState {
   socials: ISocialLink[]
 }
 
-useMyHead("art")
+useMyHead("Artwork")
 
 const state = reactive<IArtState>({
   activeCollection: "all",
@@ -45,7 +45,9 @@ provide("artUpdateCollection", updateActiveCollection)
 
 <style scoped lang="css">
 main {
-  width: 100vw;
+  width: 100%;
+  max-width: calc(min(100vw, 1920px));
+  margin: auto;
   padding-top: 0;
   overflow: hidden;
   background-color: white;

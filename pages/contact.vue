@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMyHead } from '~/composables';
-useMyHead("contact")
+useMyHead("Contact")
 </script>
 
 <style scoped lang="css">
