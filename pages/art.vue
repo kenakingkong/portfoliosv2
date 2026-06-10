@@ -25,19 +25,16 @@ const state = reactive<IArtState>({
   socials: []
 })
 
-const update = (property: string, value: any) => {
-  state[property as keyof typeof state] = value
-}
-
 const updateActiveCollection = (collection: string) => {
-  update("activeCollection", collection)
+  state["activeCollection"] = collection
 }
 
 const toCDN = (url: string) => url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')
 
-async function fetchData() {
-  const data = await $fetch<IArtItem[]>('/api/art')
-  const items = (data as any).artItems as IArtItem[]
+const { data } = await useFetch('/api/art')
+
+if (data.value) {
+  const items = (data.value as any).artItems as IArtItem[]
   const counts = items.reduce((acc: Record<string, number>, item: IArtItem) => {
     acc[item.collection] = (acc[item.collection] ?? 0) + 1
     return acc
@@ -52,10 +49,8 @@ async function fetchData() {
     url_md: toCDN(item.url_md),
     url_lg: toCDN(item.url_lg)
   })).reverse()
-  state["socials"] = (data as any).artSocials as ISocialLink[]
+  state["socials"] = (data.value as any).artSocials as ISocialLink[]
 }
-
-onMounted(fetchData)
 
 provide("artState", readonly(state))
 provide("artUpdateCollection", updateActiveCollection)
