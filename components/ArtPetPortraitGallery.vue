@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     items() {
-      return (this.state as IArtState).items.filter((item: IArtItem) => item.collection == COLLECTION_NAME)
+      return (this.state as IArtState).items.filter((item: IArtItem) => item.collection == COLLECTION_NAME).reverse()
     },
     activeImage() {
       const imageId = this.activeImageId || DEFAULT_IMAGE_ID
@@ -28,7 +28,7 @@ export default {
       const activeImageObj = (this.state as IArtState).items.find(item => item.id == imageId)
       if (!activeImageObj) return null
 
-      return { ...activeImageObj, url: activeImageObj.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net') }
+      return activeImageObj
     }
   },
   methods: {
@@ -138,7 +138,7 @@ export default {
       </li>
     </ul>
     <div class="showcase">
-      <img v-if="activeImage" :src="activeImage.url" :aria-label="activeImage.title"
+      <img v-if="activeImage" :src="activeImage.url_lg" :aria-label="activeImage.title" :alt="activeImage.title"
         class="showcase-item animate-fade-in" />
     </div>
   </div>

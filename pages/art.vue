@@ -4,9 +4,14 @@ import ArtNavBar from "~/components/ArtNavBar.vue";
 import { useMyHead } from "~/composables";
 import { ISocialLink } from "~/models/SocialLink";
 
+export interface ICollection {
+  name: string;
+  count: number;
+}
+
 export interface IArtState {
   activeCollection: string;
-  collections: string[];
+  collections: ICollection[];
   items: IArtItem[]
   socials: ISocialLink[]
 }
@@ -28,11 +33,25 @@ const updateActiveCollection = (collection: string) => {
   update("activeCollection", collection)
 }
 
+const toCDN = (url: string) => url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')
+
 async function fetchData() {
   const data = await $fetch<IArtItem[]>('/api/art')
   const items = (data as any).artItems as IArtItem[]
-  state["items"] = items
-  state["collections"] = ["all", ...Array.from(new Set(items.map((item: IArtItem) => item.collection)))]
+  const counts = items.reduce((acc: Record<string, number>, item: IArtItem) => {
+    acc[item.collection] = (acc[item.collection] ?? 0) + 1
+    return acc
+  }, {})
+  state["collections"] = [
+    { name: "all", count: items.length },
+    ...Object.entries(counts).map(([name, count]) => ({ name, count }))
+  ]
+  state["items"] = items.map(item => ({
+    ...item,
+    url: toCDN(item.url),
+    url_md: toCDN(item.url_md),
+    url_lg: toCDN(item.url_lg)
+  })).reverse()
   state["socials"] = (data as any).artSocials as ISocialLink[]
 }
 
@@ -145,17 +164,18 @@ main {
     </section>
     <div class="background-section">
       <section class="section bordered-section">
-      <h2 class="title">Background</h2>
-      <p class="background">
-        Growing up, I spent my summers painting at my Grandma’s house. She taught me to paint roses and Chinese
-        calligraphy landscapes. Then, while getting my BS in CS at Cal Poly SLO, I neglected my coding assignments so I
-        could minor in Studio Art. I still paint sometimes.
-        <br />
-        <br />
-        <a href="https://instagram.com/maks_ugly_ass_art" target="_blank"
-          ref="noreferrer noopener">@maks_ugly_ass_art</a>
-      </p>
-    </section>
+        <h2 class="title">Background</h2>
+        <p class="background">
+          Growing up, I spent my summers painting at my Grandma’s house. She taught me to paint roses and Chinese
+          calligraphy landscapes. Then, while getting my BS in CS at Cal Poly SLO, I neglected my coding assignments so
+          I
+          could minor in Studio Art. I still paint sometimes.
+          <br />
+          <br />
+          <a href="https://instagram.com/maks_ugly_ass_art" target="_blank"
+            ref="noreferrer noopener">@maks_ugly_ass_art</a>
+        </p>
+      </section>
     </div>
   </main>
 </template>

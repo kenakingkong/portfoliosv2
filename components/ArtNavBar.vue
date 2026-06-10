@@ -1,5 +1,5 @@
 <script lang="ts">
-import { IArtState } from '@/pages/art.vue';
+import { IArtState, ICollection } from '@/pages/art.vue';
 
 export default {
   inject: {
@@ -11,15 +11,15 @@ export default {
       return (this.state as IArtState).activeCollection
     },
     collections() {
-      return (this.state as IArtState).collections as string[]
+      return (this.state as IArtState).collections
     },
     updateCollection() {
       return this.updateActiveCollection as any
     }
   },
   methods: {
-    isActive(collection: string) {
-      return collection == this.activeCollection
+    isActive(collection: ICollection) {
+      return collection.name == this.activeCollection
     },
   }
 }
@@ -76,9 +76,9 @@ export default {
 <template>
   <nav>
     <ul class="collection-container">
-      <li v-for="collection in collections" :key="collection" class="collection-item-container">
-        <button :data-active="isActive(collection)" @click="updateCollection(collection)" class="collection-item">
-          {{ collection }}
+      <li v-for="collection in collections" :key="collection.name" class="collection-item-container">
+        <button :data-active="isActive(collection)" @click="updateCollection(collection.name)" class="collection-item">
+          {{ collection.name }} ({{ collection.count }})
         </button>
       </li>
     </ul>

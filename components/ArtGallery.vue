@@ -202,10 +202,10 @@ export default {
 <template>
   <div ref="containerRef" class="gallery-container">
     <ul class="gallery" :style="{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }">
-      <li v-for="item in items" :key="item.id" class="gallery-item-container">
+      <li v-for="(item, index) in items" :key="item.id" class="gallery-item-container">
         <button @click="setActiveImg" :value="item.id" class="gallery-item">
-          <img :id="item.title" :src="item.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
-            :aria-label="item.title" loading="lazy" height="300" width="300" class="gallery-item-img animate-fade-in" />
+          <img :id="item.title" :src="item.url_md" :aria-label="item.title" :alt="item.title" :loading="index < 4 ? 'eager' : 'lazy'"
+            height="300" width="300" class="gallery-item-img animate-fade-in" />
         </button>
       </li>
     </ul>
@@ -218,8 +218,8 @@ export default {
       <div id="modal-overlay" class="modal__overlay" @click="handleModalOutsideClick">
         <div class="modal__content">
           <p>{{ activeImg.title }}</p>
-          <img :src="activeImg.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')"
-            :aria-label="activeImg.title" loading="lazy" height="300" width="300" class="animate-fade-in" />
+          <img :src="activeImg.url_lg" :alt="activeImg.title" :aria-label="activeImg.title" class="animate-fade-in"
+            style="min-height: 60vh" />
           <button @click="clearActiveImg" :value='undefined' title="close">x</button>
         </div>
       </div>
