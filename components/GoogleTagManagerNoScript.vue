@@ -4,5 +4,7 @@ const iframeSrc = `https://www.googletagmanager.com/ns.html?id=${runtimeConfig.p
 </script>
 
 <template>
-  <iframe :src="iframeSrc" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  <noscript>
+    <iframe :src="iframeSrc" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 </template>
