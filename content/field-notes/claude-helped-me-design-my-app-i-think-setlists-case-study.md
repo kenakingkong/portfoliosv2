@@ -2,7 +2,7 @@
 id: 'setlists__case-study__1'
 slug: "claude-helped-me-design-my-app-i-think--setlists-case-study"
 title: "Claude helped me design my app, I think"
-description: "How I used and didn't use AI to design the UI for setlists.makenakong.com"
+description: "Case Study - How I used and didn't use AI to design the UI for setlists.makenakong.com"
 date: 2026-04-01
 ---
 
@@ -23,7 +23,7 @@ So, I built an app that creates a playlist from a few artists top tracks. Then, 
 First, I built it (working prototype first yada yada). Then, I upgraded the UI. 
 
 _My mvp:_
-![MVP](/images/case-studies/setlists__case-study__1__mvp-screenshot.webp)
+![MVP](/images/field-notes/setlists__case-study__1__mvp-screenshot.webp)
 
 ## Creative direction
 
@@ -41,7 +41,7 @@ It should be a little crude. It should be techno, but not technical. It should b
 I sent Claude a screenshot of my crude, working mvp and prompted it **_“revise my design language - going for genz brutalist but trying to make it better”._** 
 
 _Claude's iterations:_
-![Claude mockups](/images/case-studies/setlists__case-study__1__claude-mockups.webp)
+![Claude mockups](/images/field-notes/setlists__case-study__1__claude-mockups.webp)
 
 Claude nailed hierarchy with strong typographic contrast, clear visual weight. It got the “brutalism” right, solid font families, but the colors were harsh. This isn't a cybersecurity crypto app - no neon orange or lime green.
 
@@ -50,7 +50,7 @@ I asked for modifications (color suggestions, mobile-first design, accurate spot
 Then, I took a step back and asked Claude to **_"GIVE ME SOME DESIGN STYLES FROM TOP TECHNO DJS AROUND THE WORLD"_**.
 
 _Claude's techno DJ research:_
-![Claude market research on DJS](/images/case-studies/setlists__case-study__1__claude-market-research.webp)
+![Claude market research on DJS](/images/field-notes/setlists__case-study__1__claude-market-research.webp)
 
 Looking back, this should've been step 1. This gave Claude so much context for building a better design. This was also 100x faster than researching DJs' instagrams and websites and building a moodboard.
 
@@ -61,7 +61,7 @@ Then, I took to Figma to rebuild the mockups.
 Rebuilding the frames by hand on Figma is tedious, which made me prioritize which elements I need, wanted and didn't care for. I kept the hierarchy, typography styles, colored blocks. The rest of the elements were noise (extra lines, graphics, etc).
 
 _My Figma mockups:_
-![Figma mobile mockups](/images/case-studies/setlists__case-study__1__figma-mobile-mockups.webp)
+![Figma mobile mockups](/images/field-notes/setlists__case-study__1__figma-mobile-mockups.webp)
 
 
 #### Design journey Pt 2: graphics/logos/icons
@@ -72,18 +72,18 @@ I didn't know it yet, but this became my visual anchor.
 
 _My visualizer (it moves with the cursor):_
 
-![Interactive visualizer](/images/case-studies/setlists__case-study__1__visualizer-iteractive-animation.gif)
+![Interactive visualizer](/images/field-notes/setlists__case-study__1__visualizer-iteractive-animation.gif)
 
 
 I wanted more visual elements (and a logo) so I asked Claude **_"what icon would best represent this app (music icon, mix board, play icons, idk)"_**
 
 _Claude's icon designs:_
-![Claude's icon designs](/images/case-studies/setlists__case-study__1__claude-logo-designs.webp)
+![Claude's icon designs](/images/field-notes/setlists__case-study__1__claude-logo-designs.webp)
 
 Claude has some good ideas, but unrealistic execution. It was also stuck on Jeff Mill's brand so I re-prompted asking for a logo based on my own mockup but nothing landed. I realized I had all that I needed (my visualizer bars), the identity was right there.
 
 _Claude's logo vs My logo designs_
-![Claude's logo vs My logo designs](/images/case-studies/setlists__case-study__1__logo-design-comparison.webp)
+![Claude's logo vs My logo designs](/images/field-notes/setlists__case-study__1__logo-design-comparison.webp)
 
 
 #### Design journey Pt 3: building it
@@ -91,7 +91,7 @@ _Claude's logo vs My logo designs_
 Then I built it (yes, I did not even vibe-code it, I typed actual code with Claude's assistance via VS code extension).
 
 _My demo screenshot:_
-![Demo screenshot](/images/case-studies/setlists__case-study__1__production-screenshot.webp)
+![Demo screenshot](/images/field-notes/setlists__case-study__1__production-screenshot.webp)
 
 I didn't follow the mockup perfectly, changed some fonts, changed padding/heights/margins etc. I attempted the bordered text, it made a weird kink in the L in 'SETLISTS', but it looked kinda cool so I kept it.
 

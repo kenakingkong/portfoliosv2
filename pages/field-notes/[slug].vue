@@ -5,7 +5,7 @@ const route = useRoute()
 const slug = route.params.slug as string
 
 const { data: study } = await useAsyncData(`study-${slug}`, () =>
-  queryContent('case-studies', slug).findOne()
+  queryContent('field-notes', slug).findOne()
 )
 
 if (!study.value) {
@@ -93,7 +93,7 @@ h1 {
   <main>
     <NavBar />
     <article>
-      <NuxtLink to="/case-studies" class="back-button">← case studies</NuxtLink>
+      <NuxtLink to="/field-notes" class="back-button">← Back to Field Notes</NuxtLink>
       <h1>{{ study!.title }}</h1>
       <div class="content">
         <ContentDoc />

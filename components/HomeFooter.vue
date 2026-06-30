@@ -55,6 +55,14 @@ ul {
           <NuxtLink href="/contact">Contact Me</NuxtLink>
         </li>
       </ul>
+      <ul class="section__int-links-list">
+        <li>
+          <NuxtLink href="/field-notes">Field Notes</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink href="/tutorials">Tutorials</NuxtLink>
+        </li>
+      </ul>
     </nav>
   </div>
   <div class="section__ext-links">

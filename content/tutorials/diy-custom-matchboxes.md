@@ -1,11 +1,11 @@
 ---
-id: 'diy-custom-matchboxes'
+id: 'diy-custom-matchboxes__1'
 slug: "diy-custom-matchboxes"
 title: "DIY Custom Matchboxes"
 description: "This step-by-step tutorial shows you how to personalize matchboxes with your own designs."
 date: 2026-06-29
-cardImage: /images/tutorials/diy-custom-matchboxes-1320x1320.webp
-coverImage: /images/tutorials/diy-custom-matchboxes-1320x742.webp
+cardImage: /images/tutorials/diy-custom-matchboxes__1__1320x1320.webp
+coverImage: /images/tutorials/diy-custom-matchboxes__1__1320x742.webp
 ---
 
 Published 2026-06-29
