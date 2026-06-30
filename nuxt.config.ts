@@ -48,13 +48,25 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/field-notes/**": { prerender: true },
     "/tutorials/**": { prerender: true },
-    "/case-studies/claude-helped-me-design-my-app-i-think-setlists-case-study":
-      {
-        redirect: {
-          to: "/field-notes/claude-helped-me-design-my-app-i-think-setlists-case-study",
-          statusCode: 301,
-        },
-      },
+    "/case-studies": {
+      redirect: {
+        to: "/field-notes",
+        statusCode: 301
+      }
+    },
+    "/case-studies/*": {
+      redirect: {
+        to: "/field-notes/*",
+        statusCode: 301
+      }
+    },
+    // "/case-studies/claude-helped-me-design-my-app-i-think-setlists-case-study":
+    //   {
+    //     redirect: {
+    //       to: "/field-notes/claude-helped-me-design-my-app-i-think-setlists-case-study",
+    //       statusCode: 301,
+    //     },
+    //   },
     // "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {

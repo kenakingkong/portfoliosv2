@@ -38,6 +38,7 @@ main {
 
 
 .card-content {
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: calc(var(--space-1)/2)
@@ -60,6 +61,16 @@ main {
   margin: 0;
 }
 
+.card-tag {
+  width: max-content;
+  font-size: var(--text-xs);
+  font-weight: bold;
+  /* color: var(--purple);
+  border: 1px solid var(--purple);
+  border-radius: calc(var(--space-1)/2);
+  padding: calc(var(--space-1)/4) calc(var(--space-1)/2); */
+}
+
 @media only screen and (max-width: 600px) {
   .card {
     flex-direction: column;
@@ -76,12 +87,13 @@ main {
       <h1>Tutorials</h1>
       <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
         <div>
-          <img :src="article.coverImage" alt="card image" width="300" height="168" />
+          <img :src="article.gif || article.coverImage" alt="card image" width="300" height="168" />
         </div>
         <div class="card-content">
           <h2 class="card-title">{{ article.title }}</h2>
           <p class="card-body">{{ article.description }}</p>
-          <p class="card-date">{{ article.date }}</p>
+          <span v-if="article.youtubeUrl" class="card-tag">▶️ VIDEO TUTORIAL</span>
+          <p class="card-date" style="margin-top: auto">{{ article.date }}</p>
         </div>
       </NuxtLink>
     </div>
