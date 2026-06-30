@@ -39,14 +39,22 @@ export default defineNuxtConfig({
         families: {
           "Open+Sans": true,
           "Space+Grotesk": true,
-          "Space+Mono": true
+          "Space+Mono": true,
         },
       },
     ],
   ],
   routeRules: {
     "/": { prerender: true },
-    '/case-studies/**': { prerender: true },
+    "/field-notes/**": { prerender: true },
+    "/tutorials/**": { prerender: true },
+    "/case-studies/claude-helped-me-design-my-app-i-think-setlists-case-study":
+      {
+        redirect: {
+          to: "/field-notes/claude-helped-me-design-my-app-i-think-setlists-case-study",
+          statusCode: 301,
+        },
+      },
     // "/api/*": { cache: { maxAge: 60 * 60 } },
   },
   runtimeConfig: {

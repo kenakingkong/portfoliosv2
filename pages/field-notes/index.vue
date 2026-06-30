@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useMyHead } from '~/composables';
 
-useMyHead("Case Studies")
+useMyHead("Field Notes")
 
-const { data: articles } = await useAsyncData('case-studies', () =>
-  queryContent('case-studies').sort({ date: -1 }).find()
+const { data: articles } = await useAsyncData('field-notes', () =>
+  queryContent('field-notes').sort({ date: -1 }).find()
 )
 </script>
 
@@ -59,7 +59,7 @@ main {
   <main>
     <NavBar />
     <div class="container">
-      <h1>case studies</h1>
+      <h1>Field Notes</h1>
       <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
         <h2 class="card-title">{{ article.title }}</h2>
         <p class="card-body">{{ article.description }}</p>
