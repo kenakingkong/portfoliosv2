@@ -2,6 +2,7 @@ export function useMyHead<T>(
   title?: string,
   description?: string,
   type?: string,
+  image?: string,
 ) {
   const DEFAULT_TITLE = "Makena Kong <3";
   const myTitle = !!title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
@@ -12,22 +13,21 @@ export function useMyHead<T>(
 
   const runtimeConfig = useRuntimeConfig();
   const GTM_ID = runtimeConfig.public.GOOGLE_TAG_MANAGER_ID || "GTM-K3RRGZ6F";
+  const url = useRequestURL();
 
   return useHead({
     title: myTitle,
     meta: [
-      {
-        name: "title",
-        content: myTitle,
-      },
-      {
-        name: "description",
-        content: myDescription,
-      },
-      {
-        name: "type",
-        content: myType,
-      },
+      { name: "description", content: myDescription },
+      { property: "og:title", content: myTitle },
+      { property: "og:description", content: myDescription },
+      { property: "og:type", content: myType },
+      { property: "og:url", content: url.href },
+      ...(image ? [{ property: "og:image", content: image }] : []),
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: myTitle },
+      { name: "twitter:description", content: myDescription },
+      ...(image ? [{ name: "twitter:image", content: image }] : []),
     ],
     script: [
       {
