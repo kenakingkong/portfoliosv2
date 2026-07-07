@@ -1,11 +1,11 @@
-export function useMyHead<T>(
+export function useMyHead(
   title?: string,
   description?: string,
   type?: string,
   image?: string,
 ) {
   const DEFAULT_TITLE = "Makena Kong <3";
-  const myTitle = !!title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+  const myTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
   const myDescription =
     description ||
     "I'm Makena. Senior Fullstack Engineer, volunteer coding teacher and how-to guide writer. Started _mak_archives knitting and crochet pattern brand. Paints pet portraits and other art. Based in the San Francisco Bay Area.";

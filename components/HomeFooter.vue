@@ -1,39 +1,3 @@
-<style scoped lang="css">
-.section__int-links,
-.section__ext-links {
-  width: auto;
-  height: auto;
-  padding: var(--space-1);
-  font-family: var(--font-space);
-  font-size: var(--text-xs);
-  border: 1px solid black;
-}
-
-.section__title {
-  margin: 0;
-  padding: 0;
-  font-weight: bolder;
-}
-
-.section__int-links {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.section__int-links-list {
-  display: flex;
-  gap: var(--space-1);
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-</style>
-
 <template>
   <div class="section__int-links">
     <p class="section__title">Makena Kong</p>
@@ -70,17 +34,17 @@ ul {
     <nav>
       <ul>
         <li>
-          <a href="https://linkedin.com/in/makenakong" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://linkedin.com/in/makenakong" target="_blank">
             linkedin.com/in/makenakong
           </a>
         </li>
         <li>
-          <a href="https://github.com/kenakingkong" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://github.com/kenakingkong" target="_blank">
             github.com/kenakingkong
           </a>
         </li>
         <li>
-          <a href="https://medium.com/@makenakong" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://medium.com/@makenakong" target="_blank">
             medium.com/@makenakong
           </a>
         </li>
@@ -92,17 +56,17 @@ ul {
     <nav>
       <ul>
         <li>
-          <a href="https://makarchives.com" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://makarchives.com" target="_blank">
             makarchives.com
           </a>
         </li>
         <li>
-          <a href="https://etsy.makarchives.com" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://etsy.makarchives.com" target="_blank">
             etsy.makarchives.com
           </a>
         </li>
         <li>
-          <a href="https://instagram.com/_mak_archives" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://instagram.com/_mak_archives" target="_blank">
             instagram.com/_mak_archives
           </a>
         </li>
@@ -114,12 +78,12 @@ ul {
     <nav>
       <ul>
         <li>
-          <a href="https://youtube.com/@makenakong" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://youtube.com/@makenakong" target="_blank">
             youtube.com/@makenakong
           </a>
         </li>
         <li>
-          <a href="https://instagram.com/maks_ugly_ass_art" target="_blank" ref="noreferrer noopener">
+          <a ref="noreferrer noopener" href="https://instagram.com/maks_ugly_ass_art" target="_blank">
             instagram.com/maks_ugly_ass_art
           </a>
         </li>
@@ -127,3 +91,39 @@ ul {
     </nav>
   </div>
 </template>
+
+<style scoped lang="css">
+.section__int-links,
+.section__ext-links {
+  width: auto;
+  height: auto;
+  padding: var(--space-1);
+  font-family: var(--font-space);
+  font-size: var(--text-xs);
+  border: 1px solid black;
+}
+
+.section__title {
+  margin: 0;
+  padding: 0;
+  font-weight: bolder;
+}
+
+.section__int-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section__int-links-list {
+  display: flex;
+  gap: var(--space-1);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+</style>

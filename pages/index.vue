@@ -5,6 +5,42 @@ import { useMyHead } from '~/composables';
 useMyHead()
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <section style="height: 100vh">
+      <DancingName />
+    </section>
+    <section class="section__interim">
+      <p class="section__interim-mono">
+        I’m a full stack software engineer.
+        <br >
+        See my <NuxtLink href="/dev">dev stuff</NuxtLink> →
+      </p>
+      <p class="section__interim-space">Keep scrolling for everything else ⌄</p>
+    </section>
+    <section class="section__aura">
+      <p class="section__aura-text">✶ ✶ ✶</p>
+      <p class="section__aura-text">Creativity, craftsmanship and conviction.</p>
+      <p class="section__aura-text">✶ ✶ ✶</p>
+    </section>
+    <section class="section__content">
+      <p>WIP</p>
+    </section>
+    <footer>
+      <div class="section__footer">
+        <HomeFooter />
+      </div>
+      <div class="section__copyright">
+        <p class="section__copyright-text">
+          &copy; {{ new Date().getFullYear() }} Makena Kong
+        </p>
+      </div>
+    </footer>
+  </main>
+</template>
+
 <style scoped lang="css">
 body {
   overflow: hidden;
@@ -98,39 +134,3 @@ main {
   }
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <section style="height: 100vh">
-      <DancingName />
-    </section>
-    <section class="section__interim">
-      <p class="section__interim-mono">
-        I’m a senior full stack engineer.
-        <br />
-        See my <NuxtLink href="/dev">dev stuff</NuxtLink> →
-      </p>
-      <p class="section__interim-space">Keep scrolling for everything else ⌄</p>
-    </section>
-    <section class="section__aura">
-      <p class="section__aura-text">✶ ✶ ✶</p>
-      <p class="section__aura-text">Creativity, craftsmanship and conviction.</p>
-      <p class="section__aura-text">✶ ✶ ✶</p>
-    </section>
-    <section class="section__content">
-      <p>WIP</p>
-    </section>
-    <footer>
-      <div class="section__footer">
-        <HomeFooter />
-      </div>
-      <div class="section__copyright">
-        <p class="section__copyright-text">
-          &copy; {{ new Date().getFullYear() }} Makena Kong
-        </p>
-      </div>
-    </footer>
-  </main>
-</template>

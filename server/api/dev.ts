@@ -1,5 +1,5 @@
 import { db } from "../db";
-import { ISortable } from "~/models";
+import type { ISortable } from "~/models";
 
 const tableNames = [
   "devArticles",

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ISection } from '~/pages/dev.vue';
+import type { ISection } from '~/pages/dev.vue';
 
 export default {
   inject: {
@@ -15,7 +15,8 @@ export default {
 
 <template>
   <template v-for="section in sections" :key="section.id">
-    <DevSection :id="section.id" :header="section.header" :state-property="section.stateProperty"
+    <DevSection
+:id="section.id" :header="section.header" :state-property="section.stateProperty"
       v-bind="section.categoryDisplay && { categoryDisplay: section.categoryDisplay }" />
   </template>
 </template>

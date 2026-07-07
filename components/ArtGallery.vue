@@ -1,6 +1,6 @@
 <script lang="ts">
-import { IArtItem } from '~/models';
-import { IArtState } from '~/pages/art.vue';
+import type { IArtItem } from '~/models';
+import type { IArtState } from '~/pages/art.vue';
 
 export default {
   setup() {
@@ -40,8 +40,8 @@ export default {
       return state.items.find((item: IArtItem) => item.id == id)
     }
 
-    const setActiveImg = (event: any) => {
-      if (event.currentTarget?.value) {
+    const setActiveImg = (event: MouseEvent) => {
+      if (event.currentTarget instanceof HTMLButtonElement && event.currentTarget.value) {
         event.preventDefault()
         activeImg.value = findImg(event.currentTarget.value)
       } else {
@@ -76,14 +76,44 @@ export default {
     }
   },
   methods: {
-    handleModalOutsideClick(event: any) {
-      if (event.target.id == "modal-overlay") {
+    handleModalOutsideClick(event: MouseEvent) {
+      if (event.target instanceof Element && event.target.id === "modal-overlay") {
         this.clearActiveImg()
       }
     }
   }
 }
 </script>
+
+<template>
+  <div ref="containerRef" class="gallery-container">
+    <ul class="gallery" :style="{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }">
+      <li v-for="(item, index) in items" :key="item.id" class="gallery-item-container">
+        <button :value="item.id" class="gallery-item" @click="setActiveImg">
+          <img
+:id="item.title" :src="item.url_md" :aria-label="item.title" :alt="item.title"
+            :loading="index < 4 ? 'eager' : 'lazy'" height="300" width="300" class="gallery-item-img animate-fade-in">
+        </button>
+      </li>
+    </ul>
+    <button v-if="hasMore && !showAll" class="gallery-show-all-button" @click="showAll = true">
+      Show all images
+    </button>
+  </div>
+  <Teleport to="body">
+    <div v-if="!!activeImg">
+      <div id="modal-overlay" class="modal__overlay" @click="handleModalOutsideClick">
+        <div class="modal__content">
+          <p>{{ activeImg.title }}</p>
+          <img
+:src="activeImg.url_lg" :alt="activeImg.title" :aria-label="activeImg.title" class="animate-fade-in"
+            style="min-height: 60vh">
+          <button :value='undefined' title="close" @click="clearActiveImg">x</button>
+        </div>
+      </div>
+    </div>
+  </Teleport>
+</template>
 
 <style scoped lang="css">
 .gallery-container {
@@ -198,31 +228,3 @@ export default {
   font-size: x-large;
 }
 </style>
-
-<template>
-  <div ref="containerRef" class="gallery-container">
-    <ul class="gallery" :style="{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }">
-      <li v-for="(item, index) in items" :key="item.id" class="gallery-item-container">
-        <button @click="setActiveImg" :value="item.id" class="gallery-item">
-          <img :id="item.title" :src="item.url_md" :aria-label="item.title" :alt="item.title" :loading="index < 4 ? 'eager' : 'lazy'"
-            height="300" width="300" class="gallery-item-img animate-fade-in" />
-        </button>
-      </li>
-    </ul>
-    <button v-if="hasMore && !showAll" @click="showAll = true" class="gallery-show-all-button">
-      Show all images
-    </button>
-  </div>
-  <Teleport to="body">
-    <div v-if="!!activeImg">
-      <div id="modal-overlay" class="modal__overlay" @click="handleModalOutsideClick">
-        <div class="modal__content">
-          <p>{{ activeImg.title }}</p>
-          <img :src="activeImg.url_lg" :alt="activeImg.title" :aria-label="activeImg.title" class="animate-fade-in"
-            style="min-height: 60vh" />
-          <button @click="clearActiveImg" :value='undefined' title="close">x</button>
-        </div>
-      </div>
-    </div>
-  </Teleport>
-</template>

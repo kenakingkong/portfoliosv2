@@ -1,4 +1,4 @@
-import { ISortable } from "./Sortable";
+import type { ISortable } from "./Sortable";
 
 export interface IDevProject extends ISortable {
   description: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ISection } from '~/pages/dev.vue';
+import type { ISection } from '~/pages/dev.vue';
 
 export default {
   inject: {
@@ -12,6 +12,21 @@ export default {
   },
 }
 </script>
+
+<template>
+  <aside>
+    <nav>
+      <ul>
+        <li>
+          <NuxtLink to="#about">about me</NuxtLink>
+        </li>
+        <li v-for="item in items" :key="item.stateProperty">
+          <NuxtLink :to="{ path: '/dev', hash: `#${item.id}` }">{{ item.header }}</NuxtLink>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+</template>
 
 <style scoped lang="css">
 @media only screen and (max-width: 880px) {
@@ -42,18 +57,3 @@ li {
   text-transform: capitalize;
 }
 </style>
-
-<template>
-  <aside>
-    <nav>
-      <ul>
-        <li>
-          <NuxtLink to="#about">about me</NuxtLink>
-        </li>
-        <li v-for="item in items" :key="item.stateProperty">
-          <NuxtLink :to="{ path: '/dev', hash: `#${item.id}` }">{{ item.header }}</NuxtLink>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-</template>

@@ -1,3 +1,3 @@
-import { ISortable } from "./Sortable";
+import type { ISortable } from "./Sortable";
 
-export interface IDevVolunteer extends ISortable {}
+export type IDevVolunteer = ISortable

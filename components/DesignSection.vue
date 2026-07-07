@@ -1,5 +1,5 @@
 <script lang="ts">
-import { IDesignSet, IDesignZipfile } from '~/models';
+import type { IDesignSet, IDesignZipfile } from '~/models';
 
 export default {
   props: {
@@ -9,7 +9,7 @@ export default {
     activeFileIndex: 0
   }),
   methods: {
-    onDownload(event: any, zipfile: IDesignZipfile) {
+    onDownload(event: MouseEvent, zipfile: IDesignZipfile) {
       const answer = prompt("Enter the password to download this zipfile!")
       if (answer == zipfile.access_code) {
         const anchorEl = document.createElement("a")
@@ -22,6 +22,23 @@ export default {
   },
 }
 </script>
+
+<template>
+  <ul class="card">
+    <li>
+      <h2 class="card-title">{{ set.title }}</h2>
+      <button :id="set.zipfile.name" class="card-zipfile" @click="onDownload($event, set.zipfile)">
+        Download Files
+      </button>
+    </li>
+    <li v-for="file in set.files" :key="file.name">
+      <figure>
+        <img :src="file.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')" loading="lazy" >
+        <figcaption>{{ file.name }}</figcaption>
+      </figure>
+    </li>
+  </ul>
+</template>
 
 <style scoped lang="css">
 ul {
@@ -84,20 +101,3 @@ button {
   cursor: pointer;
 }
 </style>
-
-<template>
-  <ul class="card">
-    <li>
-      <h2 class="card-title">{{ set.title }}</h2>
-      <button :id="set.zipfile.name" @click="onDownload($event, set.zipfile)" class="card-zipfile">
-        Download Files
-      </button>
-    </li>
-    <li v-for="file in set.files" :key="file.name">
-      <figure>
-        <img :src="file.url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')" loading="lazy" />
-        <figcaption>{{ file.name }}</figcaption>
-      </figure>
-    </li>
-  </ul>
-</template>

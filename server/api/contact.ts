@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event).catch(() => {});
 
-  let data = {
+  const data = {
     records: [
       {
         fields: {

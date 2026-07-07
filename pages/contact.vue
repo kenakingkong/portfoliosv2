@@ -3,6 +3,14 @@ import { useMyHead } from '~/composables';
 useMyHead("Contact")
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <ContactForm />
+  </main>
+</template>
+
 <style scoped lang="css">
 main {
   height: 100vh;
@@ -12,11 +20,3 @@ main {
   flex-direction: column;
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <ContactForm />
-  </main>
-</template>

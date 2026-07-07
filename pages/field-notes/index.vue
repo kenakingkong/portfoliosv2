@@ -8,6 +8,21 @@ const { data: articles } = await useAsyncData('field-notes', () =>
 )
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <div class="container">
+      <h1>Field Notes</h1>
+      <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
+        <h2 class="card-title">{{ article.title }}</h2>
+        <p class="card-body">{{ article.description }}</p>
+        <p class="card-date">{{ article.date }}</p>
+      </NuxtLink>
+    </div>
+  </main>
+</template>
+
 <style scoped lang="css">
 main {
   width: 100%;
@@ -53,18 +68,3 @@ main {
   margin: 0;
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <div class="container">
-      <h1>Field Notes</h1>
-      <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
-        <h2 class="card-title">{{ article.title }}</h2>
-        <p class="card-body">{{ article.description }}</p>
-        <p class="card-date">{{ article.date }}</p>
-      </NuxtLink>
-    </div>
-  </main>
-</template>

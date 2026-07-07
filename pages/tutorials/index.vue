@@ -8,6 +8,27 @@ const { data: articles } = await useAsyncData('tutorials', () =>
 )
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <div class="container">
+      <h1>Tutorials</h1>
+      <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
+        <div>
+          <img :src="article.gif || article.coverImage" alt="card image" width="300" height="168" >
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">{{ article.title }}</h2>
+          <p class="card-body">{{ article.description }}</p>
+          <span v-if="article.youtubeUrl" class="card-tag">▶️ VIDEO TUTORIAL</span>
+          <p class="card-date" style="margin-top: auto">{{ article.date }}</p>
+        </div>
+      </NuxtLink>
+    </div>
+  </main>
+</template>
+
 <style scoped lang="css">
 main {
   width: 100%;
@@ -78,24 +99,3 @@ main {
   }
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <div class="container">
-      <h1>Tutorials</h1>
-      <NuxtLink v-for="article in articles" :key="article._path" :to="article._path" class="card">
-        <div>
-          <img :src="article.gif || article.coverImage" alt="card image" width="300" height="168" />
-        </div>
-        <div class="card-content">
-          <h2 class="card-title">{{ article.title }}</h2>
-          <p class="card-body">{{ article.description }}</p>
-          <span v-if="article.youtubeUrl" class="card-tag">▶️ VIDEO TUTORIAL</span>
-          <p class="card-date" style="margin-top: auto">{{ article.date }}</p>
-        </div>
-      </NuxtLink>
-    </div>
-  </main>
-</template>

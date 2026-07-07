@@ -1,8 +1,21 @@
 <script setup lang="ts">
-const props = defineProps({
-  error: Object
+defineProps({
+  error: {
+    type: Object,
+    default: null,
+  }
 })
 </script>
+
+<template>
+  <main>
+    <NavBar />
+    <div>
+      <h2 v-if="error">{{ error?.statusCode }}</h2>
+      <h1>Nothing to see here!</h1>
+    </div>
+  </main>
+</template>
 
 <style scoped lang="css">
 body {
@@ -28,13 +41,3 @@ div {
   font-family: var(--font-space);
 }
 </style>
-
-<template>
-  <main>
-    <NavBar />
-    <div>
-      <h2 v-if="error">{{ error?.statusCode }}</h2>
-      <h1>Nothing to see here!</h1>
-    </div>
-  </main>
-</template>

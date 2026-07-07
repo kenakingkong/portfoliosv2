@@ -1,6 +1,6 @@
 <script lang="ts">
-import { IArtItem } from '~/models';
-import { IArtState } from '~/pages/art.vue';
+import type { IArtItem } from '~/models';
+import type { IArtState } from '~/pages/art.vue';
 
 const COLLECTION_NAME = "pet portraits"
 const DEFAULT_IMAGE_ID = 'rico_inquisitive'
@@ -32,8 +32,10 @@ export default {
     }
   },
   methods: {
-    setActiveImageId(event: any) {
-      const targetId = event.target?.dataset?.id
+    setActiveImage(event: MouseEvent) {
+      if (!(event.target instanceof HTMLElement)) return
+
+      const targetId = event.target.dataset.id
       if (targetId && this.activeImageId !== targetId) {
         this.setActiveImageId(targetId)
       }
@@ -41,6 +43,23 @@ export default {
   }
 }
 </script>
+
+<template>
+  <div class="container">
+    <ul class="gallery">
+      <li v-for="item in items" :key="item.id" class="gallery-item-name-container">
+        <p
+:data-id="item.id" :data-active="activeImageId == item.id" class="gallery-item-name"
+          @mouseenter="setActiveImage">{{ item.title }}</p>
+      </li>
+    </ul>
+    <div class="showcase">
+      <img
+v-if="activeImage" :src="activeImage.url_lg" :aria-label="activeImage.title" :alt="activeImage.title"
+        class="showcase-item animate-fade-in">
+    </div>
+  </div>
+</template>
 
 <style scoped lang="css">
 .container {
@@ -128,18 +147,3 @@ export default {
   }
 }
 </style>
-
-<template>
-  <div class="container">
-    <ul class="gallery">
-      <li v-for="item in items" class="gallery-item-name-container">
-        <p :data-id="item.id" @mouseenter="setActiveImageId" :data-active="activeImageId == item.id"
-          class="gallery-item-name">{{ item.title }}</p>
-      </li>
-    </ul>
-    <div class="showcase">
-      <img v-if="activeImage" :src="activeImage.url_lg" :aria-label="activeImage.title" :alt="activeImage.title"
-        class="showcase-item animate-fade-in" />
-    </div>
-  </div>
-</template>

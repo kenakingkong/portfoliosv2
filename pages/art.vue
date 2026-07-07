@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { IArtItem } from "@/models"
+import type { IArtItem } from "@/models"
 import ArtNavBar from "~/components/ArtNavBar.vue";
 import { useMyHead } from "~/composables";
-import { ISocialLink } from "~/models/SocialLink";
+import type { ISocialLink } from "~/models/SocialLink";
 
 export interface ICollection {
   name: string;
@@ -14,6 +14,11 @@ export interface IArtState {
   collections: ICollection[];
   items: IArtItem[]
   socials: ISocialLink[]
+}
+
+interface ArtApiResponse {
+  artItems: IArtItem[]
+  artSocials: ISocialLink[]
 }
 
 useMyHead("Artwork")
@@ -31,10 +36,12 @@ const updateActiveCollection = (collection: string) => {
 
 const toCDN = (url: string) => url.replace('assets.makenakong.com', 'd20vl58cxzmqvr.cloudfront.net')
 
-const { data } = await useFetch('/api/art')
+
+
+const { data } = await useFetch<ArtApiResponse>('/api/art')
 
 if (data.value) {
-  const items = (data.value as any).artItems as IArtItem[]
+  const items = data.value.artItems
   const counts = items.reduce((acc: Record<string, number>, item: IArtItem) => {
     acc[item.collection] = (acc[item.collection] ?? 0) + 1
     return acc
@@ -49,13 +56,51 @@ if (data.value) {
     url_md: toCDN(item.url_md),
     url_lg: toCDN(item.url_lg)
   })).reverse()
-  state["socials"] = (data.value as any).artSocials as ISocialLink[]
+  state["socials"] = data.value.artSocials
 }
 
 provide("artState", readonly(state))
 provide("artUpdateCollection", updateActiveCollection)
 
 </script>
+
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <section class="section unpadded-top-section">
+      <h1 class="title">Artwork</h1>
+      <div class="container">
+        <aside class="sidebar">
+          <ArtNavBar />
+        </aside>
+        <div class="gallery">
+          <ArtGallery />
+        </div>
+      </div>
+    </section>
+    <section class="section bordered-section">
+      <h2 class="title">Pet Portraits</h2>
+      <ArtPetPortraitGallery />
+    </section>
+    <div class="background-section">
+      <section class="section bordered-section">
+        <h2 class="title">Background</h2>
+        <p class="background">
+          Growing up, I spent my summers painting at my Grandma’s house. She taught me to paint roses and Chinese
+          calligraphy landscapes. Then, while getting my BS in CS at Cal Poly SLO, I neglected my coding assignments so
+          I
+          could minor in Studio Art. I still paint sometimes.
+          <br>
+          <br>
+          <a
+ref="noreferrer noopener" href="https://instagram.com/maks_ugly_ass_art"
+            target="_blank">@maks_ugly_ass_art</a>
+        </p>
+      </section>
+    </div>
+  </main>
+</template>
 
 <style scoped lang="css">
 main {
@@ -137,40 +182,3 @@ main {
   }
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <section class="section unpadded-top-section">
-      <h1 class="title">Artwork</h1>
-      <div class="container">
-        <aside class="sidebar">
-          <ArtNavBar />
-        </aside>
-        <div class="gallery">
-          <ArtGallery />
-        </div>
-      </div>
-    </section>
-    <section class="section bordered-section">
-      <h2 class="title">Pet Portraits</h2>
-      <ArtPetPortraitGallery />
-    </section>
-    <div class="background-section">
-      <section class="section bordered-section">
-        <h2 class="title">Background</h2>
-        <p class="background">
-          Growing up, I spent my summers painting at my Grandma’s house. She taught me to paint roses and Chinese
-          calligraphy landscapes. Then, while getting my BS in CS at Cal Poly SLO, I neglected my coding assignments so
-          I
-          could minor in Studio Art. I still paint sometimes.
-          <br />
-          <br />
-          <a href="https://instagram.com/maks_ugly_ass_art" target="_blank"
-            ref="noreferrer noopener">@maks_ugly_ass_art</a>
-        </p>
-      </section>
-    </div>
-  </main>
-</template>

@@ -16,6 +16,20 @@ const props = defineProps<{ links?: INavLink[] }>()
 const navLinks = computed(() => props.links || defaultNavLinks)
 </script>
 
+<template>
+  <nav>
+    <NuxtLink to="/">
+      <img src="@/assets/images/logo.svg" alt="mak logo" >
+    </NuxtLink>
+    <ul>
+      <li v-for="link in navLinks" :key="link.to">
+        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink><span
+          v-if="link.to != '/contact'" class="link-star">✶</span>
+      </li>
+    </ul>
+  </nav>
+</template>
+
 <style scoped lang="css">
 nav {
   padding: var(--space-1);
@@ -76,17 +90,3 @@ nav img {
   }
 }
 </style>
-
-<template>
-  <nav>
-    <NuxtLink to="/">
-      <img src="@/assets/images/logo.svg" alt="mak logo" />
-    </NuxtLink>
-    <ul>
-      <li v-for="link in navLinks" :key="link.to">
-        <NuxtLink :to="link.to" exact-active-class="active-link">{{ link.title }}</NuxtLink><span
-          v-if="link.to != '/contact'" class="link-star">✶</span>
-      </li>
-    </ul>
-  </nav>
-</template>

@@ -25,6 +25,7 @@ if (!admin.apps.length) {
     console.error("Error initializing Firebase Admin SDK:", error);
     throw new Error(
       "Failed to initialize Firebase Admin SDK. Check service account credentials.",
+      { cause: error },
     );
   }
 }

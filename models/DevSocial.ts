@@ -1,3 +1,3 @@
-import { ISocialLink } from "./SocialLink";
+import type { ISocialLink } from "./SocialLink";
 
-export interface IDevSocial extends ISocialLink {}
+export type IDevSocial = ISocialLink;

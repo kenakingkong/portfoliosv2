@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {
+import type {
   IDevArticle,
   IDevCaseStudy,
   IDevEducation,
@@ -49,6 +49,24 @@ provide("devState", readonly(state));
 provide("devSections", readonly(sections))
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <div class="container">
+      <DevSidebar />
+      <div class="content"> 
+        <DevSummary />
+        <DevHeader />
+        <DevSections />
+        <p class="ai-summary-disclaimer">
+          * The AI generated summary was written by myself and not by AI.
+        </p>
+      </div>
+    </div>
+  </main>
+</template>
+
 <style scoped lang="css">
 main {
   height: 100%;
@@ -78,21 +96,3 @@ main {
   color: gray;
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <div class="container">
-      <DevSidebar />
-      <div class="content"> 
-        <DevSummary />
-        <DevHeader />
-        <DevSections />
-        <p class="ai-summary-disclaimer">
-          * The AI generated summary was written by myself and not by AI.
-        </p>
-      </div>
-    </div>
-  </main>
-</template>

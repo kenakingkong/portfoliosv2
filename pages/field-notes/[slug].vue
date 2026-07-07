@@ -15,6 +15,20 @@ if (!study.value) {
 useMyHead(study.value.title, study.value.description, "article")
 </script>
 
+<template>
+  <GoogleTagManagerNoScript />
+  <main>
+    <NavBar />
+    <article>
+      <NuxtLink to="/field-notes" class="back-button">← Back to Field Notes</NuxtLink>
+      <h1>{{ study!.title }}</h1>
+      <div class="content">
+        <ContentDoc />
+      </div>
+    </article>
+  </main>
+</template>
+
 <style scoped lang="css">
 main {
   width: 100%;
@@ -87,17 +101,3 @@ h1 {
   object-fit: contain;
 }
 </style>
-
-<template>
-  <GoogleTagManagerNoScript />
-  <main>
-    <NavBar />
-    <article>
-      <NuxtLink to="/field-notes" class="back-button">← Back to Field Notes</NuxtLink>
-      <h1>{{ study!.title }}</h1>
-      <div class="content">
-        <ContentDoc />
-      </div>
-    </article>
-  </main>
-</template>

@@ -10,11 +10,6 @@ export default {
   data: () => ({
     animation: null as GSAPTimeline | null
   }),
-  methods: {
-    animate: function () {
-      if (this.animation) this.animation.restart()
-    }
-  },
   mounted() {
     if (!this.content) return;
 
@@ -46,9 +41,33 @@ export default {
   },
   unmounted() {
     if (this.animation) this.animation.kill()
+  },
+  methods: {
+    animate: function () {
+      if (this.animation) this.animation.restart()
+    }
   }
 }
 </script>
+
+<template>
+  <div class="container">
+    <h1>makena kong</h1>
+    <div ref="content" @mouseenter="animate">
+      <p>M</p>
+      <p>a</p>
+      <p>k</p>
+      <p>e</p>
+      <p>n</p>
+      <p>a</p>
+      <br>
+      <p>K</p>
+      <p>o</p>
+      <p>n</p>
+      <p>g</p>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="css">
 .container {
@@ -79,22 +98,3 @@ p {
   display: inline-block;
 }
 </style>
-
-<template>
-  <div class="container">
-    <h1>makena kong</h1>
-    <div ref="content" @mouseenter="animate">
-      <p>M</p>
-      <p>a</p>
-      <p>k</p>
-      <p>e</p>
-      <p>n</p>
-      <p>a</p>
-      <br/>
-      <p>K</p>
-      <p>o</p>
-      <p>n</p>
-      <p>g</p>
-    </div>
-  </div>
-</template>

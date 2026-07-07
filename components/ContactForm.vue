@@ -2,21 +2,25 @@
 export default {
 
   methods: {
-    async onSubmit(event: any) {
+    async onSubmit(event: SubmitEvent) {
       event.preventDefault()
+      if (!(event.target instanceof HTMLFormElement)) return
+
+      const form = event.target
+      const getValue = (name: string) =>
+        (form.elements.namedItem(name) as HTMLInputElement).value.trim()
+
       try {
-        const { name, email, message } = event.target
-        const body = {
-          name: name.value.trim(),
-          email: email.value.trim(),
-          message: message.value.trim()
-        }
         await $fetch('/api/contact', {
           method: 'POST',
-          body: body
+          body: {
+            name: getValue('name'),
+            email: getValue('email'),
+            message: getValue('message'),
+          }
         })
         alert("Your message was sent!")
-        event.target.reset()
+        form.reset()
       } catch (err) {
         alert("Something went wrong :(")
       }
@@ -24,6 +28,33 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div>
+    <form id="contact-form" @submit="onSubmit">
+      <h1>message me!</h1>
+      <fieldset>
+        <label for="name-input">your name</label>
+        <input
+id="name-input" type="text" name="name" placeholder="namey name" maxlength="255" aria-required="true"
+          required>
+      </fieldset>
+      <fieldset>
+        <label for="email-input">your email</label>
+        <input
+id="email-input" type="email" name="email" placeholder="email@email.com" maxlength="255"
+          aria-required="true" required>
+      </fieldset>
+      <fieldset>
+        <label for="message-input">your message</label>
+        <textarea
+id="message-input" name="message" placeholder="blah blah blah" rows="3" maxlength="255"
+          aria-required="true" required />
+      </fieldset>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</template>
 
 <style scoped lang="css">
 div {
@@ -107,27 +138,3 @@ button:focus-visible {
   outline: 2px solid var(--magenta)
 }
 </style>
-
-<template>
-  <div>
-    <form id="contact-form" @submit="onSubmit">
-      <h1>message me!</h1>
-      <fieldset>
-        <label for="name-input">your name</label>
-        <input id="name-input" type="text" name="name" placeholder="namey name" maxlength="255" aria-required="true"
-          required />
-      </fieldset>
-      <fieldset>
-        <label for="email-input">your email</label>
-        <input id="email-input" type="email" name="email" placeholder="email@email.com" maxlength="255"
-          aria-required="true" required />
-      </fieldset>
-      <fieldset>
-        <label for="message-input">your message</label>
-        <textarea id="message-input" name="message" placeholder="blah blah blah" rows="3" maxlength="255"
-          aria-required="true" required></textarea>
-      </fieldset>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</template>

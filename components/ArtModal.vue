@@ -1,24 +1,22 @@
 <script lang="ts">
 export default {
-  inject: {
-    modalIsShowing: "modalShowState",
-    closeModal: "closeModal",
-  },
-  computed: {
-    isShowing() {
-      return !!this.modalIsShowing
-    }
+  setup() {
+    const modalIsShowing = inject('modalShowState')
+    const closeModal = inject<() => void>('closeModal')
+    const isShowing = computed(() => !!modalIsShowing)
+    
+    return { isShowing, closeModal }
   },
 }
 </script>
-
-<style scoped lang="css"></style>
 
 <template>
   <Teleport to="body">
     <div v-if="isShowing" class="modal">
       <p>Hello from the modal!</p>
-      <button @click="">Close</button>
+      <button @click="closeModal">Close</button>
     </div>
   </Teleport>
 </template>
+
+<style scoped lang="css"></style>

@@ -19,6 +19,65 @@ function startTyping() {
 }
 </script>
 
+<template>
+  <div class="container">
+    <button v-if="!showSummary" class="summarize-button" @click="startTyping">
+      ✦ Summarize with AI*
+    </button>
+    <div v-if="showSummary" class="summary">
+      <h2 class="title">✦ Summary</h2>
+      <div v-if="showPlaceholder" class="body-placeholder">
+        <p>Generating Summary...</p>
+      </div>
+      <div v-else ref="bodyRef" class="body">
+        <p>
+          Makena Kong is a <span class="highlight" data-bg-reveal>full stack software engineer with a product
+            mindset</span> who spent <span class="highlight" data-bg-reveal>5
+            years owning products</span> E2E and speed-running mvps at a small
+          fintech startup.
+        </p>
+        <p>
+          On the side, she has built websites and set up workspaces for small businesses, including her <a
+            href="https://gw2dental.com" target="_blank" rel="noopener noreferrer">
+            family dentist
+          </a>.
+        </p>
+        <p>
+          She volunteers at non-profits like <a
+href="https://codenation.org" target="_blank"
+            rel="noopener noreferrer">CodeNation</a> and <a
+href="https://missionbit.org" target="_blank"
+            rel="noopener noreferrer">MissionBit</a> that teach coding and technical literacy in
+          under-resourced schools in the Bay Area. AI is the future, <i>but so are kids!</i>
+        </p>
+        <p class="disclaimer">
+          Responses can be inaccurate. We recommend you check important facts.
+        </p>
+        <button v-if="isDone" class="sources-button" @click="showSources = !showSources">
+          Sources (2)
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+d="M2.99854 7.00153L12.0006 17.0027L21.0027 7.00153" stroke="black" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <ul v-if="showSources">
+          <li>
+            <a href="#about">
+              Personal portfolio
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/makenakong" target="_blank" rel="noopener noreferrer">
+              LinkedIn profile
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="css">
 .container {
   display: flex;
@@ -95,59 +154,3 @@ ul {
   padding-left: var(--space-1);
 }
 </style>
-
-<template>
-  <div class="container">
-    <button v-if="!showSummary" @click="startTyping" class="summarize-button">
-      ✦ Summarize with AI*
-    </button>
-    <div v-if="showSummary" class="summary">
-      <h2 class="title">✦ Summary</h2>
-      <div v-if="showPlaceholder" class="body-placeholder">
-        <p>Generating Summary...</p>
-      </div>
-      <div v-else ref="bodyRef" class="body">
-        <p>
-          Makena Kong is a <span class="highlight" data-bg-reveal>full stack software engineer with a product
-            mindset</span> who spent <span class="highlight" data-bg-reveal>5
-            years owning products</span> E2E and speed-running mvps at a small
-          fintech startup.
-        </p>
-        <p>
-          On the side, she has built websites and set up workspaces for small businesses, including her <a
-            href="https://gw2dental.com" target="_blank" rel="noopener noreferrer">
-            family dentist
-          </a>.
-        </p>
-        <p>
-          She volunteers at non-profits like <a href="https://codenation.org" target="_blank"
-            rel="noopener noreferrer">CodeNation</a> and <a href="https://missionbit.org" target="_blank"
-            rel="noopener noreferrer">MissionBit</a> that teach coding and technical literacy in
-          under-resourced schools in the Bay Area. AI is the future, <i>but so are kids!</i>
-        </p>
-        <p class="disclaimer">
-          Responses can be inaccurate. We recommend you check important facts.
-        </p>
-        <button v-if="isDone" class="sources-button" @click="showSources = !showSources">
-          Sources (2)
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.99854 7.00153L12.0006 17.0027L21.0027 7.00153" stroke="black" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-        <ul v-if="showSources">
-          <li>
-            <a href="#about">
-              Personal portfolio
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/makenakong" target="_blank" rel="noopener noreferrer">
-              LinkedIn profile
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</template>
